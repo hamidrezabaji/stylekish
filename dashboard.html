@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>پنل مدیریت فروشگاه - استایل کیش</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9f9",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "surface-container-high": "#e8e8e8",
+            "primary": "#000000",
+            "secondary": "#5f5e5b",
+            "outline-variant": "#c4c7c7",
+          },
+          fontFamily: {
+            "serif": ["Libre Caslon Text", "Vazirmatn", "serif"],
+            "sans": ["Vazirmatn", "Be Vietnam Pro", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "64px",
+            "container-max": "1440px"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-surface text-neutral-900 min-h-screen flex flex-col antialiased">
+
+  <!-- Admin Login Gate -->
+  <div id="admin-login-gate" class="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+    <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-6 text-right">
+      <h2 class="font-serif text-lg font-bold mb-1">ورود ادمین</h2>
+      <p class="text-xs text-neutral-500 mb-4">برای مدیریت محصولات، توکن ادمین را وارد کنید.</p>
+      <form onsubmit="handleAdminLogin(event)" class="space-y-3">
+        <input type="password" id="admin-token-input" placeholder="توکن ادمین" required
+          class="w-full border border-neutral-300 rounded p-2 text-xs text-left" dir="ltr">
+        <p id="admin-login-error" class="text-[11px] text-red-600 hidden">توکن نامعتبر است.</p>
+        <button type="submit" class="w-full bg-neutral-900 text-white py-2 rounded text-xs font-bold">ورود</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white border-b border-neutral-200 sticky top-0 z-30">
+    <div class="max-w-container-max mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="font-serif text-xl font-bold">استایل کیش</a>
+        <span class="text-xs bg-neutral-900 text-white px-2 py-0.5 rounded font-mono">Store Admin</span>
+      </div>
+      <a href="index.html" class="text-xs text-neutral-600 hover:text-black flex items-center gap-1">
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        بازگشت به فروشگاه
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow max-w-container-max w-full mx-auto px-4 py-8">
+    
+    <!-- Top Stats -->
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
+      <div class="bg-white p-5 rounded-xl border border-neutral-200">
+        <span class="text-xs text-neutral-500 block mb-1">تعداد محصولات کاتالوگ</span>
+        <span id="stat-total-products" class="text-2xl font-bold font-sans">۰</span>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-neutral-200">
+        <span class="text-xs text-neutral-500 block mb-1">کالاهای دارای تخفیف</span>
+        <span id="stat-sale-products" class="text-2xl font-bold font-sans text-red-600">۰</span>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-neutral-200">
+        <span class="text-xs text-neutral-500 block mb-1">آیدی تلگرام متصل</span>
+        <span id="stat-telegram-id" class="text-sm font-bold font-mono">@StyleKish_Support</span>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-neutral-200 flex items-center justify-between">
+        <div>
+          <span class="text-xs text-neutral-500 block mb-1">وضعیت اتصال به دیتابیس</span>
+          <span id="stat-db-status" class="text-xs font-bold text-neutral-400">در حال بررسی...</span>
+        </div>
+        <button onclick="doLogout()" class="text-[11px] text-red-600 hover:underline">خروج ادمین</button>
+      </div>
+    </div>
+
+    <!-- Actions & Product Table -->
+    <div class="bg-white rounded-xl border border-neutral-200 overflow-hidden shadow-sm">
+      <div class="p-5 border-b border-neutral-200 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div>
+          <h2 class="font-serif text-lg font-bold">مدیریت محصولات و قیمت‌ها</h2>
+          <p class="text-xs text-neutral-500">تغییرات مستقیماً در دیتابیس ثبت و برای همه‌ی بازدیدکنندگان اعمال می‌شود.</p>
+        </div>
+        <button onclick="openProductModal()" class="bg-neutral-900 text-white px-4 py-2 rounded text-xs font-bold hover:bg-neutral-800 transition flex items-center gap-1">
+          <span class="material-symbols-outlined text-sm">add</span>
+          افزودن محصول جدید
+        </button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs text-right">
+          <thead class="bg-neutral-50 text-neutral-600 border-b border-neutral-200 font-semibold">
+            <tr>
+              <th class="p-3">تصویر</th>
+              <th class="p-3">کد کالا</th>
+              <th class="p-3">نام محصول</th>
+              <th class="p-3">دسته‌بندی</th>
+              <th class="p-3">قیمت (تومان)</th>
+              <th class="p-3">تخفیف</th>
+              <th class="p-3">وضعیت</th>
+              <th class="p-3 text-center">عملیات</th>
+            </tr>
+          </thead>
+          <tbody id="admin-products-table" class="divide-y divide-neutral-100">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Add/Edit Product Modal -->
+  <div id="product-admin-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeProductModal()"></div>
+    <div class="relative bg-white rounded-xl shadow-2xl max-w-xl w-full p-6 z-10 text-right modal-content max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center pb-4 border-b border-neutral-200 mb-4">
+        <h3 class="font-serif text-base font-bold" id="admin-modal-title">افزودن محصول جدید</h3>
+        <button onclick="closeProductModal()" class="text-neutral-500"><span class="material-symbols-outlined">close</span></button>
+      </div>
+
+      <form onsubmit="saveProductFromForm(event)" class="space-y-4 font-sans text-xs">
+        <input type="hidden" id="form-product-id">
+
+        <div>
+          <label class="block font-bold mb-1">نام محصول *</label>
+          <input type="text" id="form-name" required class="w-full border border-neutral-300 rounded p-2 text-xs">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold mb-1">کد کالا (SKU) *</label>
+            <input type="text" id="form-sku" required class="w-full border border-neutral-300 rounded p-2 text-xs font-mono">
+          </div>
+          <div>
+            <label class="block font-bold mb-1">دسته‌بندی *</label>
+            <select id="form-category" class="w-full border border-neutral-300 rounded p-2 text-xs">
+              <option value="women">زنانه</option>
+              <option value="men">مردانه</option>
+              <option value="accessories">اکسسوری</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold mb-1">قیمت فروش (تومان) *</label>
+            <input type="number" id="form-price" required class="w-full border border-neutral-300 rounded p-2 text-xs font-mono">
+          </div>
+          <div>
+            <label class="block font-bold mb-1">قیمت قبل از تخفیف (تومان)</label>
+            <input type="number" id="form-original-price" class="w-full border border-neutral-300 rounded p-2 text-xs font-mono">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold mb-1">آدرس اینترنتی تصویر (Image URL) *</label>
+          <input type="url" id="form-image" required class="w-full border border-neutral-300 rounded p-2 text-xs text-left" dir="ltr">
+        </div>
+
+        <div>
+          <label class="block font-bold mb-1">توضیحات و داستان اثر</label>
+          <textarea id="form-desc" rows="3" class="w-full border border-neutral-300 rounded p-2 text-xs"></textarea>
+        </div>
+
+        <div class="flex gap-4 pt-2">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="form-is-new" class="rounded">
+            <span>برچسب جدید</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="form-is-sale" class="rounded">
+            <span>کالای حراجی</span>
+          </label>
+        </div>
+
+        <div class="pt-4 border-t border-neutral-200 flex justify-end gap-2">
+          <button type="button" onclick="closeProductModal()" class="px-4 py-2 border rounded text-xs">انصراف</button>
+          <button type="submit" class="px-6 py-2 bg-neutral-900 text-white rounded text-xs font-bold">ذخیره محصول</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    let adminProducts = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const gate = document.getElementById('admin-login-gate');
+      const token = getAdminToken();
+      if (token) {
+        const valid = await verifyAdminToken(token).catch(() => false);
+        if (valid) {
+          gate.classList.add('hidden');
+          initDashboard();
+          return;
+        }
+        clearAdminToken();
+      }
+      gate.classList.remove('hidden');
+    });
+
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      const input = document.getElementById('admin-token-input');
+      const errorEl = document.getElementById('admin-login-error');
+      const token = input.value.trim();
+      const valid = await verifyAdminToken(token).catch(() => false);
+      if (valid) {
+        setAdminToken(token);
+        errorEl.classList.add('hidden');
+        document.getElementById('admin-login-gate').classList.add('hidden');
+        initDashboard();
+      } else {
+        errorEl.classList.remove('hidden');
+      }
+    }
+
+    function doLogout() {
+      clearAdminToken();
+      location.reload();
+    }
+
+    async function initDashboard() {
+      await refreshAndRenderProducts();
+    }
+
+    async function refreshAndRenderProducts() {
+      const dbStatus = document.getElementById('stat-db-status');
+      try {
+        adminProducts = await loadProductsData();
+        dbStatus.textContent = 'متصل (Cloudflare D1)';
+        dbStatus.className = 'text-xs font-bold text-emerald-600';
+      } catch (e) {
+        dbStatus.textContent = 'خطا در اتصال به API';
+        dbStatus.className = 'text-xs font-bold text-red-600';
+      }
+      renderAdminTable();
+    }
+
+    function renderAdminTable() {
+      const products = adminProducts;
+      const tbody = document.getElementById('admin-products-table');
+      
+      document.getElementById('stat-total-products').textContent = toPersianDigits(products.length);
+      document.getElementById('stat-sale-products').textContent = toPersianDigits(products.filter(p => p.isSale).length);
+
+      tbody.innerHTML = products.map((p, index) => `
+        <tr class="hover:bg-neutral-50 transition">
+          <td class="p-3">
+            <img src="${p.image}" class="w-10 h-12 object-cover rounded bg-neutral-100">
+          </td>
+          <td class="p-3 font-mono text-neutral-600">${p.sku}</td>
+          <td class="p-3 font-semibold font-serif">${p.name}</td>
+          <td class="p-3">${p.category === 'women' ? 'زنانه' : (p.category === 'men' ? 'مردانه' : 'اکسسوری')}</td>
+          <td class="p-3 font-sans font-bold">${formatPrice(p.price)}</td>
+          <td class="p-3">${p.isSale ? `<span class="text-red-600 font-bold">${toPersianDigits(p.discountPercent)}٪</span>` : '-'}</td>
+          <td class="p-3">
+            <span class="px-2 py-0.5 rounded text-[10px] ${p.inStock ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">
+              ${p.inStock ? 'موجود' : 'ناموجود'}
+            </span>
+          </td>
+          <td class="p-3 text-center">
+            <div class="flex items-center justify-center gap-2">
+              <button onclick="editProduct('${p.id}')" class="p-1 hover:text-blue-600" title="ویرایش"><span class="material-symbols-outlined text-[16px]">edit</span></button>
+              <button onclick="deleteProduct('${p.id}')" class="p-1 hover:text-red-600" title="حذف"><span class="material-symbols-outlined text-[16px]">delete</span></button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function openProductModal(product = null) {
+      const modal = document.getElementById('product-admin-modal');
+      const title = document.getElementById('admin-modal-title');
+      
+      if (product) {
+        title.textContent = `ویرایش: ${product.name}`;
+        document.getElementById('form-product-id').value = product.id;
+        document.getElementById('form-name').value = product.name;
+        document.getElementById('form-sku').value = product.sku;
+        document.getElementById('form-category').value = product.category;
+        document.getElementById('form-price').value = product.price;
+        document.getElementById('form-original-price').value = product.originalPrice || product.price;
+        document.getElementById('form-image').value = product.image;
+        document.getElementById('form-desc').value = product.description || '';
+        document.getElementById('form-is-new').checked = !!product.isNew;
+        document.getElementById('form-is-sale').checked = !!product.isSale;
+      } else {
+        title.textContent = 'افزودن محصول جدید';
+        document.getElementById('form-product-id').value = '';
+        document.querySelector('#product-admin-modal form').reset();
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-admin-modal').classList.add('hidden');
+    }
+
+    function editProduct(id) {
+      const product = adminProducts.find(p => p.id === id);
+      if (product) openProductModal(product);
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm('آیا از حذف این محصول اطمینان دارید؟')) return;
+      try {
+        await deleteProductAPI(id);
+        showToast('محصول با موفقیت حذف شد', 'info');
+        await refreshAndRenderProducts();
+      } catch (e) {
+        showToast('خطا در حذف محصول: ' + e.message, 'error');
+      }
+    }
+
+    async function saveProductFromForm(e) {
+      e.preventDefault();
+      const id = document.getElementById('form-product-id').value || '';
+      const name = document.getElementById('form-name').value;
+      const sku = document.getElementById('form-sku').value;
+      const category = document.getElementById('form-category').value;
+      const price = Number(document.getElementById('form-price').value);
+      const origPrice = Number(document.getElementById('form-original-price').value) || price;
+      const image = document.getElementById('form-image').value;
+      const desc = document.getElementById('form-desc').value;
+      const isNew = document.getElementById('form-is-new').checked;
+      const isSale = document.getElementById('form-is-sale').checked;
+      const discountPercent = (origPrice > price) ? Math.round(((origPrice - price) / origPrice) * 100) : 0;
+
+      const isEditing = !!id;
+      const existing = isEditing ? adminProducts.find(p => p.id === id) : null;
+
+      const productObj = {
+        sku,
+        name,
+        subtitle: `${category === 'women' ? 'زنانه' : (category === 'men' ? 'مردانه' : 'اکسسوری')} - پارچه اعلا`,
+        category,
+        subCategory: existing ? existing.subCategory : 'dress',
+        gender: category === 'women' ? 'women' : (category === 'men' ? 'men' : 'unisex'),
+        price,
+        originalPrice: origPrice,
+        discountPercent,
+        isNew,
+        isSale,
+        inStock: true,
+        image,
+        description: desc,
+        sizes: existing ? existing.sizes : ['S', 'M', 'L'],
+        colors: existing ? existing.colors : [{ name: 'مشکی', hex: '#000000' }]
+      };
+
+      try {
+        if (isEditing) {
+          await updateProductAPI(id, productObj);
+        } else {
+          await createProductAPI(productObj);
+        }
+        closeProductModal();
+        showToast('اطلاعات محصول با موفقیت ذخیره گردید.', 'success');
+        await refreshAndRenderProducts();
+      } catch (e) {
+        showToast('خطا در ذخیره‌ی محصول: ' + e.message, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

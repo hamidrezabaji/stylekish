@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>تماس با ما - استایل کیش</title>
+  <meta name="description" content="ارتباط با پشتیبانی و بوتیک‌های استایل کیش، رزرو وقت پرو اختصاصی و سفارش مستقیم تلگرام.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9f9",
+            "surface-dim": "#dadada",
+            "surface-bright": "#f9f9f9",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "surface-container-high": "#e8e8e8",
+            "surface-container-highest": "#e2e2e2",
+            "on-surface": "#1a1c1c",
+            "on-surface-variant": "#444748",
+            "outline": "#747878",
+            "outline-variant": "#c4c7c7",
+            "primary": "#000000",
+            "on-primary": "#ffffff",
+            "secondary": "#5f5e5b",
+            "secondary-container": "#e5e2dd",
+            "on-secondary-container": "#656461",
+            "tertiary": "#000000",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "background": "#f9f9f9",
+            "on-background": "#1a1c1c"
+          },
+          fontFamily: {
+            "serif": ["Libre Caslon Text", "Vazirmatn", "serif"],
+            "sans": ["Vazirmatn", "Be Vietnam Pro", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "64px",
+            "container-max": "1440px"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-black selection:text-white">
+
+  <!-- TopNavBar -->
+  <header class="sticky top-0 z-50 transition-all duration-300 glass-header border-b border-outline-variant/30">
+    <div class="flex flex-row-reverse justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+      <div class="flex items-center gap-4">
+        <button onclick="toggleSearchModal(true)" aria-label="جستجو" class="p-2 text-primary hover:text-secondary transition-colors" title="جستجو">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </button>
+        <button onclick="toggleCartDrawer(true)" aria-label="سبد خرید" class="p-2 text-primary hover:text-secondary transition-colors relative" title="سبد خرید">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="cart-count-badge hidden absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">۰</span>
+        </button>
+        <button onclick="toggleMobileMenu(true)" aria-label="منو" class="md:hidden p-2 text-primary">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+
+      <nav class="hidden md:flex gap-8 items-center" dir="rtl">
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=women">زنانه</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=men">مردانه</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=new">جدیدترین‌ها</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=sale">حراج</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="about.html">داستان برند</a>
+        <a class="font-sans text-sm text-primary font-bold border-b border-primary pb-1" href="contact.html">تماس با ما</a>
+      </nav>
+
+      <div class="font-serif text-2xl md:text-3xl text-primary tracking-tight font-bold">
+        <a href="index.html" class="hover:opacity-80 transition-opacity">استایل کیش</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12">
+    
+    <!-- Header -->
+    <section class="text-center max-w-2xl mx-auto mb-16">
+      <h1 class="font-serif text-3xl md:text-4xl text-primary font-bold mb-4">تماس با استایل کیش</h1>
+      <p class="text-sm md:text-base text-secondary leading-relaxed">
+        تیم مشاوره و پشتیبانی تشریفات ما در تمامی ساعات شبانه‌روز آماده همراهی با شما عزیزان می‌باشند.
+      </p>
+    </section>
+
+    <!-- 3 Quick Contact Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      
+      <!-- Telegram Hotline -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-[#2AABEE]/40 text-right space-y-4 shadow-sm relative overflow-hidden group hover:border-[#2AABEE] transition">
+        <div class="w-12 h-12 rounded-xl bg-[#2AABEE]/10 text-[#2AABEE] flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">send</span>
+        </div>
+        <h3 class="font-serif text-xl font-bold text-primary">پشتیبانی و سفارش تلگرام</h3>
+        <p class="text-xs text-secondary leading-relaxed">
+          سریع‌ترین راه برای ثبت سفارش، استعلام موجودی و مشاوره سایز توسط طراحان.
+        </p>
+        <a href="https://t.me/StyleKish_Support" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-[#2AABEE] hover:underline">
+          <span>ارسال پیام به @StyleKish_Support</span>
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+        </a>
+      </div>
+
+      <!-- Phone / VIP Concierge -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/40 text-right space-y-4 shadow-sm hover:border-primary transition">
+        <div class="w-12 h-12 rounded-xl bg-neutral-100 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">call</span>
+        </div>
+        <h3 class="font-serif text-xl font-bold text-primary">شماره تماس مستقیم</h3>
+        <p class="text-xs text-secondary leading-relaxed">
+          پاسخگویی همه روزه از ساعت ۱۰:۰۰ الی ۲۲:۰۰ (حتی روزهای تعطیل)
+        </p>
+        <a href="tel:+982188888888" class="inline-block font-mono text-sm font-bold text-primary" dir="ltr">
+          +98 (21) 8888-8888
+        </a>
+      </div>
+
+      <!-- Private Fitting -->
+      <div class="bg-surface-container-lowest p-8 rounded-2xl border border-outline-variant/40 text-right space-y-4 shadow-sm hover:border-primary transition">
+        <div class="w-12 h-12 rounded-xl bg-neutral-100 text-primary flex items-center justify-center">
+          <span class="material-symbols-outlined text-2xl">event_seat</span>
+        </div>
+        <h3 class="font-serif text-xl font-bold text-primary">رزرو پرو خصوصی در سالن</h3>
+        <p class="text-xs text-secondary leading-relaxed">
+          تجربه پرو اختصاصی VIP در بوتیک‌های کیش و تهران با هماهنگی قبلی.
+        </p>
+        <button onclick="scrollToBooking()" class="inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline">
+          <span>تکمیل فرم رزرو وقت</span>
+          <span class="material-symbols-outlined text-sm">arrow_downward</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Contact Form & Showrooms Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
+      
+      <!-- Contact / Order Message Form (lg:col-span-7) -->
+      <div class="lg:col-span-7 bg-surface-container-lowest p-8 md:p-10 rounded-2xl border border-outline-variant/40 shadow-sm" id="booking-section">
+        <h2 class="font-serif text-2xl font-bold text-primary mb-2 text-right">ارسال پیام یا رزرو وقت پرو VIP</h2>
+        <p class="text-xs text-secondary mb-8 text-right">پیام شما مستقیماً توسط تیم سرپرستی استایل کیش بررسی و پاسخ داده می‌شود.</p>
+
+        <form onsubmit="handleContactSubmit(event)" class="space-y-6 text-right font-sans">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-primary mb-2">نام و نام خانوادگی *</label>
+              <input type="text" id="contact-name" required placeholder="مثال: سارا رادمنش" class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg p-3 text-xs text-right focus:border-primary focus:ring-0">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-primary mb-2">شماره موبایل / تلگرام *</label>
+              <input type="tel" id="contact-phone" required placeholder="۰۹۱۲۳۴۵۶۷۸۹" class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg p-3 text-xs text-right focus:border-primary focus:ring-0">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-primary mb-2">موضوع درخواست</label>
+              <select id="contact-subject" class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg p-3 text-xs text-right focus:border-primary focus:ring-0">
+                <option value="order">استعلام و خرید محصول خاص</option>
+                <option value="vip-fitting">رزرو وقت پرو اختصاصی در بوتیک</option>
+                <option value="custom-tailoring">سفارش دوخت با سایز شخصی</option>
+                <option value="feedback">پیشنهاد و انتقاد</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-primary mb-2">شعبه مورد نظر</label>
+              <select id="contact-branch" class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg p-3 text-xs text-right focus:border-primary focus:ring-0">
+                <option value="kish">بوتیک مرکزی جزیره کیش</option>
+                <option value="tehran">سالن اختصاصی تهران (زعفرانیه)</option>
+                <option value="online">سفارش آنلاین / سراسر ایران</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-primary mb-2">متن پیام یا توضیحات سفارش *</label>
+            <textarea id="contact-message" rows="4" required placeholder="مشخصات لباس، تاریخ مورد نظر برای پرو یا سوال خود را بنویسید..." class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg p-3 text-xs text-right focus:border-primary focus:ring-0"></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 pt-2">
+            <button type="submit" class="bg-primary text-white py-3.5 px-8 rounded-lg text-xs font-bold hover:bg-neutral-800 transition flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">send</span>
+              ارسال پیام به کارشناسان
+            </button>
+            <button type="button" onclick="sendContactViaTelegram()" class="border border-[#2AABEE] text-[#2AABEE] hover:bg-[#2AABEE]/10 py-3.5 px-6 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">send</span>
+              ارسال مستقیم فرم در تلگرام
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Physical Boutiques Info (lg:col-span-5) -->
+      <div class="lg:col-span-5 space-y-6 text-right font-sans">
+        
+        <!-- Boutique 1: Kish -->
+        <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 space-y-3">
+          <span class="text-[11px] font-bold text-secondary uppercase tracking-wider block">دفتر و بوتیک مرکزی</span>
+          <h3 class="font-serif text-lg font-bold text-primary">بوتیک آتلیه کیش</h3>
+          <p class="text-xs text-secondary leading-relaxed">
+            جزیره کیش، بلوار ساحل، مجتمع تجاری دیپلمات سنتر، طبقه اول، واحد ۱۰۴
+          </p>
+          <div class="text-xs text-neutral-500 pt-1">
+            ساعات کاری: ۱۰:۰۰ الی ۱۳:۳۰ و ۱۷:۰۰ الی ۲۳:۰۰
+          </div>
+        </div>
+
+        <!-- Boutique 2: Tehran -->
+        <div class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/40 space-y-3">
+          <span class="text-[11px] font-bold text-secondary uppercase tracking-wider block">سالن اختصاصی پرو</span>
+          <h3 class="font-serif text-lg font-bold text-primary">شو روم زعفرانیه تهران</h3>
+          <p class="text-xs text-secondary leading-relaxed">
+            تهران، زعفرانیه، خیابان الف، پلاک ۲۸، طبقه ۳ (پذیرش صرفاً با هماهنگی قبلی)
+          </p>
+          <div class="text-xs text-neutral-500 pt-1">
+            ساعات کاری: ۱۱:۰۰ الی ۲۰:۰۰ (به جز شنبه‌ها)
+          </div>
+        </div>
+
+        <!-- VIP Concierge Note -->
+        <div class="bg-neutral-900 text-white p-6 rounded-2xl space-y-2">
+          <div class="flex items-center gap-2 text-[#c5a880]">
+            <span class="material-symbols-outlined text-lg">star</span>
+            <span class="text-xs font-bold">خدمت پرو در منزل (تهران و کیش)</span>
+          </div>
+          <p class="text-xs text-neutral-300 leading-relaxed">
+            برای مشتریان VIP، امکان ارسال چمدان انتخاب اختصاصی همراه با کارشناس استایل جهت پرو در منزل فراهم می‌باشد.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="max-w-3xl mx-auto mb-20" id="faq">
+      <div class="text-center mb-10">
+        <h2 class="font-serif text-2xl md:text-3xl font-bold text-primary mb-2">پرسش‌های متداول</h2>
+        <p class="text-xs md:text-sm text-secondary">پاسخ به متداول‌ترین سوالات درباره ثبت سفارش، سایز و ارسال</p>
+      </div>
+
+      <div class="divide-y divide-outline-variant/30 border-y border-outline-variant/30 text-right font-sans">
+        
+        <details class="group py-4">
+          <summary class="flex justify-between items-center cursor-pointer font-serif text-sm font-bold text-primary list-none">
+            <span>چگونه می‌توانم از طریق تلگرام سفارش خود را نهایی کنم؟</span>
+            <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+          </summary>
+          <p class="pt-3 text-xs text-secondary leading-relaxed">
+            در صفحه هر محصول یا در سبد خرید با کلیک روی دکمه «خرید از تلگرام»، پیام سفارش شامل نام کالا، کد اختصاصی، سایز و رنگ به صورت آماده در تلگرام برای شما باز می‌شود. تنها کافیست آن را به آیدی پشتیبانی ارسال فرمایید تا شماره کارت و هماهنگی ارسال انجام گردد.
+          </p>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex justify-between items-center cursor-pointer font-serif text-sm font-bold text-primary list-none">
+            <span>مدت زمان ارسال سفارش‌ها چقدر است؟</span>
+            <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+          </summary>
+          <p class="pt-3 text-xs text-secondary leading-relaxed">
+            برای تهران و کیش، تحویل همان روز به صورت اکسپرس انجام می‌شود. برای سایر استان‌ها با پست پیشتاز VIP بین ۲ تا ۳ روز کاری تحویل داده خواهد شد.
+          </p>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex justify-between items-center cursor-pointer font-serif text-sm font-bold text-primary list-none">
+            <span>آیا در صورت نامناسب بودن سایز امکان تعویض وجود دارد؟</span>
+            <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+          </summary>
+          <p class="pt-3 text-xs text-secondary leading-relaxed">
+            بله، تا ۷ روز پس از دریافت سفارش، در صورت عدم استفاده و حفظ برچسب اصالت کالا، تعویض سایز به صورت کاملاً رایگان انجام می‌پذیرد.
+          </p>
+        </details>
+
+        <details class="group py-4">
+          <summary class="flex justify-between items-center cursor-pointer font-serif text-sm font-bold text-primary list-none">
+            <span>آیا امکان سفارش دوخت بر اساس ابعاد شخصی وجود دارد؟</span>
+            <span class="material-symbols-outlined transition-transform duration-300 group-open:rotate-180 text-secondary">expand_more</span>
+          </summary>
+          <p class="pt-3 text-xs text-secondary leading-relaxed">
+            بله، استایل کیش خدمات دوخت سفارشی (Bespoke) را برای پالتوها، پیراهن‌های ابریشمی و کت‌های فاخر ارائه می‌دهد. کافیست در فرم بالا گزینه «سفارش دوخت با سایز شخصی» را انتخاب نمایید.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-high text-on-surface border-t border-outline-variant/30 mt-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto text-right font-sans">
+      <div class="md:col-span-2 space-y-4">
+        <h3 class="font-serif text-2xl text-primary font-bold">استایل کیش</h3>
+        <p class="text-sm max-w-sm text-secondary leading-relaxed">تجلی هنر ایرانی در کالبد مد مدرن. ما زیبایی جاودانه را با کیفیت بی‌نظیر برای شما به ارمغان می‌آوریم.</p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-primary mb-6 uppercase tracking-wider">لینک‌های مفید</h4>
+        <ul class="space-y-3 text-sm text-secondary">
+          <li><a class="hover:text-primary transition-colors" href="about.html">داستان برند</a></li>
+          <li><a class="hover:text-primary transition-colors" href="products.html">کاتالوگ محصولات</a></li>
+          <li><a class="hover:text-primary transition-colors" href="contact.html">تماس با ما</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-primary mb-6 uppercase tracking-wider">پشتیبانی تلگرام</h4>
+        <a href="https://t.me/StyleKish_Support" target="_blank" class="inline-flex items-center gap-2 bg-[#2AABEE] text-white px-5 py-2.5 rounded text-xs font-bold">
+          <span class="material-symbols-outlined text-sm">send</span>
+          @StyleKish_Support
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Drawer & Mobile Menu -->
+  <div id="cart-drawer-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-50 drawer-backdrop" onclick="toggleCartDrawer(false)">
+    <div id="cart-drawer-panel" class="absolute top-0 left-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col z-10 drawer-panel" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-5 border-b border-neutral-200">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><h3 class="font-serif text-lg font-bold">سبد خرید شما</h3></div>
+        <button onclick="toggleCartDrawer(false)" class="text-neutral-500 hover:text-black"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div id="cart-drawer-items" class="flex-grow overflow-y-auto divide-y divide-neutral-100"></div>
+      <div id="cart-drawer-empty" class="p-8 text-center hidden my-auto">
+        <span class="material-symbols-outlined text-5xl text-neutral-300 mb-2">shopping_basket</span>
+        <p class="text-sm text-neutral-600 font-semibold mb-2">سبد خرید شما خالی است</p>
+      </div>
+      <div id="cart-drawer-footer" class="p-5 border-t border-neutral-200 bg-neutral-50 space-y-4">
+        <div class="flex justify-between items-center"><span class="text-xs text-neutral-500 font-semibold">مبلغ کل:</span><span id="cart-drawer-total" class="text-base font-bold text-neutral-900 font-sans">۰ تومان</span></div>
+        <button onclick="Cart.checkoutViaTelegram()" class="w-full bg-[#2AABEE] hover:bg-[#2297d4] text-white py-3.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 shadow-md">
+          <span class="material-symbols-outlined text-[18px]">send</span>
+          ثبت سفارش در تلگرام
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-50 drawer-backdrop md:hidden" onclick="toggleMobileMenu(false)">
+    <div id="mobile-menu-panel" class="absolute top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white shadow-2xl flex flex-col z-10 drawer-panel-right text-right" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-5 border-b border-neutral-200">
+        <span class="font-serif text-xl font-bold">استایل کیش</span>
+        <button onclick="toggleMobileMenu(false)" class="text-neutral-500 hover:text-black"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <nav class="p-5 flex flex-col gap-4 text-sm font-semibold">
+        <a href="index.html" class="py-2 border-b border-neutral-100 text-neutral-700">صفحه اصلی</a>
+        <a href="products.html?category=women" class="py-2 border-b border-neutral-100 text-neutral-900">زنانه</a>
+        <a href="products.html?category=men" class="py-2 border-b border-neutral-100 text-neutral-900">مردانه</a>
+        <a href="products.html?category=new" class="py-2 border-b border-neutral-100 text-neutral-900">جدیدترین‌ها</a>
+        <a href="products.html?category=sale" class="py-2 border-b border-neutral-100 text-red-600">حراج فصل</a>
+        <a href="about.html" class="py-2 border-b border-neutral-100 text-neutral-700">داستان برند</a>
+        <a href="contact.html" class="py-2 border-b border-neutral-100 text-neutral-900 font-bold">تماس با ما</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    function scrollToBooking() {
+      const el = document.getElementById('booking-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value;
+      const phone = document.getElementById('contact-phone').value;
+      const subject = document.getElementById('contact-subject').value;
+      const message = document.getElementById('contact-message').value;
+
+      showToast(`پیام شما با موفقیت ثبت شد. کارشناسان ما به زودی با شما تماس خواهند گرفت.`, 'success');
+      e.target.reset();
+    }
+
+    function sendContactViaTelegram() {
+      const name = document.getElementById('contact-name').value || 'ناشناس';
+      const phone = document.getElementById('contact-phone').value || '-';
+      const subject = document.getElementById('contact-subject').value;
+      const branch = document.getElementById('contact-branch').value;
+      const msg = document.getElementById('contact-message').value || 'درخواست مشاوره';
+
+      let text = `📩 *فرم پیام / رزرو وقت اختصاصی استایل کیش*\n`;
+      text += `──────────────────\n`;
+      text += `▫️ نام متقاضی: ${name}\n`;
+      text += `▫️ شماره تماس: ${phone}\n`;
+      text += `▫️ موضوع: ${subject}\n`;
+      text += `▫️ شعبه/نوع: ${branch}\n`;
+      text += `▫️ توضیحات:\n${msg}\n`;
+
+      const encoded = encodeURIComponent(text);
+      const url = `https://t.me/${CONFIG.telegramUsername}?text=${encoded}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

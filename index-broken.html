@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´ - ÙØ±ÙˆØ´Ú¯Ø§Ù‡ Ù…Ø¯ Ùˆ Ù¾ÙˆØ´Ø§Ú© Ù„ÙˆÚ©Ø³ Ø§ÛŒØ±Ø§Ù†ÛŒ</title>
+  <meta name="description" content="Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´Ø› ØªÙ„ÙÛŒÙ‚ÛŒ Ø§Ø² Ø§ØµØ§Ù„Øª Ù‡Ù†Ø± Ø§ÛŒØ±Ø§Ù†ÛŒ Ùˆ Ù…ÛŒÙ†ÛŒÙ…Ø§Ù„ÛŒØ³Ù… Ù…Ø¹Ø§ØµØ± Ø¯Ø± Ù¾ÙˆØ´Ø§Ú© Ùˆ Ø§Ú©Ø³Ø³ÙˆØ±ÛŒ ÙØ§Ø®Ø±. Ø®Ø±ÛŒØ¯ Ù…Ø³ØªÙ‚ÛŒÙ… Ø§Ø² ØªÙ„Ú¯Ø±Ø§Ù….">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9f9",
+            "surface-dim": "#dadada",
+            "surface-bright": "#f9f9f9",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "surface-container-high": "#e8e8e8",
+            "surface-container-highest": "#e2e2e2",
+            "on-surface": "#1a1c1c",
+            "on-surface-variant": "#444748",
+            "outline": "#747878",
+            "outline-variant": "#c4c7c7",
+            "primary": "#000000",
+            "on-primary": "#ffffff",
+            "secondary": "#5f5e5b",
+            "secondary-container": "#e5e2dd",
+            "on-secondary-container": "#656461",
+            "tertiary": "#000000",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "background": "#f9f9f9",
+            "on-background": "#1a1c1c"
+          },
+          fontFamily: {
+            "serif": ["Libre Caslon Text", "Vazirmatn", "serif"],
+            "sans": ["Vazirmatn", "Be Vietnam Pro", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "64px",
+            "container-max": "1440px"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-black selection:text-white">
+
+  <!-- TopNavBar (Sticky Glass Header) -->
+  <header class="sticky top-0 z-50 transition-all duration-300 glass-header border-b border-outline-variant/30">
+    <div class="flex flex-row-reverse justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+      
+      <!-- Utility Actions (Left in RTL visual layout) -->
+      <div class="flex items-center gap-4">
+        <!-- Search Trigger -->
+        <button onclick="toggleSearchModal(true)" aria-label="Ø¬Ø³ØªØ¬Ùˆ" class="p-2 text-primary hover:text-secondary transition-colors" title="Ø¬Ø³ØªØ¬Ùˆ">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </button>
+        
+        <!-- Cart Trigger with Badge -->
+        <button onclick="toggleCartDrawer(true)" aria-label="Ø³Ø¨Ø¯ Ø®Ø±ÛŒØ¯" class="p-2 text-primary hover:text-secondary transition-colors relative" title="Ø³Ø¨Ø¯ Ø®Ø±ÛŒØ¯">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="cart-count-badge hidden absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">Û°</span>
+        </button>
+
+        <!-- Wishlist -->
+        <a href="products.html?filter=wishlist" aria-label="Ø¹Ù„Ø§Ù‚Ù‡â€ŒÙ…Ù†Ø¯ÛŒâ€ŒÙ‡Ø§" class="p-2 text-primary hover:text-secondary transition-colors relative hidden sm:block" title="Ø¹Ù„Ø§Ù‚Ù‡â€ŒÙ…Ù†Ø¯ÛŒâ€ŒÙ‡Ø§">
+          <span class="material-symbols-outlined text-[22px]">favorite</span>
+          <span class="wishlist-count-badge hidden absolute -top-1 -right-1 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">Û°</span>
+        </a>
+
+        <!-- Admin / Dashboard Portal -->
+        <a href="dashboard.html" aria-label="Ù¾Ù†Ù„ Ù…Ø¯ÛŒØ±ÛŒØª" class="p-2 text-primary hover:text-secondary transition-colors hidden md:block" title="Ù¾Ù†Ù„ Ù…Ø¯ÛŒØ±ÛŒØª ÙØ±ÙˆØ´Ú¯Ø§Ù‡">
+          <span class="material-symbols-outlined text-[22px]">admin_panel_settings</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileMenu(true)" aria-label="Ù…Ù†Ùˆ" class="md:hidden p-2 text-primary">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+
+      <!-- Navigation Links (Center in Desktop) -->
+      <nav class="hidden md:flex gap-8 items-center" dir="rtl">
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=women">Ø²Ù†Ø§Ù†Ù‡</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=men">Ù…Ø±Ø¯Ø§Ù†Ù‡</a>
+        <a class="font-sans text-sm text-primary font-bold border-b border-primary pb-1" href="products.html?category=new">Ø¬Ø¯ÛŒØ¯ØªØ±ÛŒÙ†â€ŒÙ‡Ø§</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=sale">Ø­Ø±Ø§Ø¬</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="about.html">Ø¯Ø§Ø³ØªØ§Ù† Ø¨Ø±Ù†Ø¯</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="contact.html">ØªÙ…Ø§Ø³ Ø¨Ø§ Ù…Ø§</a>
+      </nav>
+
+      <!-- Brand Logo (Right in RTL layout) -->
+      <div class="font-serif text-2xl md:text-3xl text-primary tracking-tight font-bold">
+        <a href="index.html" class="hover:opacity-80 transition-opacity">Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    
+    <!-- Hero Section -->
+    <section class="relative w-full h-[80vh] min-h-[560px] max-h-[820px] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <img class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzkW887zrZPGfI3Q2W_dKMNzMFhyrYMzh1CTPkIIaGQJr23iWBfET7ZMsa2qPULANhAjtmy_Rxxh6h28a0mkW5X-Rmoi-ficIizyktjGaaviW2bRpDkhsK_aMFT069u_Y90Nj_xSHDiaPNjJIKt1QmSV0PYwOS8tRQKcxAO1p1OaV0AcbXmrEoS93RtBXnb14rdagO8ODrq201maD_EWJA0AbjFMBdBuQIVtRigdP8nXIi7A_OiVU_" alt="Ú©Ø§Ù„Ú©Ø´Ù† Ø¨Ù‡Ø§Ø± Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´">
+        <div class="absolute inset-0 bg-black/35 backdrop-brightness-95"></div>
+      </div>
+      
+      <div class="relative z-10 text-center px-4 max-w-3xl mx-auto space-y-6">
+        <span class="inline-block text-xs font-semibold uppercase tracking-widest text-white/90 bg-white/15 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20">
+          Ú©Ø§Ù„Ú©Ø´Ù† Ø¬Ø¯ÛŒØ¯ Û±Û´Û°Ûµ
+        </span>
+        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-white tracking-tight drop-shadow-md leading-tight">
+          Ù‡Ù†Ø± Ø¯Ø± ØªØ§Ø± Ùˆ Ù¾ÙˆØ¯
+        </h1>
+        <p class="font-sans text-base sm:text-lg text-white/90 drop-shadow max-w-xl mx-auto leading-relaxed">
+          ØªÙ„ÙÛŒÙ‚ÛŒ Ø§Ø² Ø§ØµØ§Ù„Øª Ù‡Ù†Ø± Ø§ÛŒØ±Ø§Ù†ÛŒ Ùˆ Ù…ÛŒÙ†ÛŒÙ…Ø§Ù„ÛŒØ³Ù… Ù…Ø¹Ø§ØµØ±Ø› Ù…ØªØ±ÛŒØ§Ù„ Ø¯Ø±Ø¬Ù‡ ÛŒÚ© Ø¨Ø±Ø§ÛŒ Ø§Ù†Ø³Ø§Ù† Ø®ÙˆØ´â€ŒÙ¾ÙˆØ´ Ø§Ù…Ø±ÙˆØ²ÛŒ.
+        </p>
+        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="products.html?category=women" class="bg-white text-neutral-900 px-8 py-4 text-xs font-bold hover:bg-neutral-100 transition duration-300 rounded shadow-lg">
+            Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ú©Ø§Ù„Ú©Ø´Ù† Ø²Ù†Ø§Ù†Ù‡
+          </a>
+          <a href="products.html?category=men" class="bg-transparent border border-white text-white px-8 py-4 text-xs font-bold hover:bg-white/15 transition duration-300 rounded backdrop-blur-sm">
+            Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ú©Ø§Ù„Ú©Ø´Ù† Ù…Ø±Ø¯Ø§Ù†Ù‡
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- New Arrivals Bento Grid Showcase -->
+    <section class="py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <div class="flex justify-between items-end mb-12 border-b border-primary/15 pb-4">
+        <a class="text-xs font-bold text-primary hover:text-secondary transition-colors underline underline-offset-4 decoration-1" href="products.html">
+          Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ù‡Ù…Ù‡ Ù…Ø­ØµÙˆÙ„Ø§Øª
+        </a>
+        <div class="text-right">
+          <span class="text-xs text-secondary font-semibold uppercase tracking-widest block mb-1">Ø¯Ø³Øªâ€ŒÚ†ÛŒÙ† Ø¢Ø«Ø§Ø±</span>
+          <h2 class="font-serif text-2xl md:text-3xl text-primary font-bold">Ø¬Ø¯ÛŒØ¯ØªØ±ÛŒÙ†â€ŒÙ‡Ø§</h2>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter h-auto md:h-[600px]">
+        <!-- Large Featured Item -->
+        <div class="group relative md:col-span-2 block h-[420px] md:h-full overflow-hidden bg-surface-container-high rounded cursor-pointer" onclick="openQuickView('kashan-silk-scarf')">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMrt-ZLRLYLUnglceJsu0FGTmYp3MtMVHsTh78uQYyCAS8fi-GFdCjv87zXlTb0I6S3LCIhLnCAcNBq9hwALXKe_F0kkBW6xSWufYDAs_evOe0Aw30N89_98HmlDEYpwIZJbbyZKy0pDlKSAPCgJh6Y_7YntHb1P0fztLRDKDH08Du8gFGsFwO503FvsxZSkaJTZEp8u747lqhZw7DyNnYyN50br-7uKOReqdIcsUplqYTTHOr5hs-" alt="Ø´Ø§Ù„ Ø§Ø¨Ø±ÛŒØ´Ù… Ú©Ø§Ø´Ø§Ù†">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 transition-opacity duration-300 flex items-end p-6 md:p-8">
+            <div class="text-right w-full flex justify-between items-end">
+              <div>
+                <span class="text-xs text-white/80 font-sans block mb-1">Ø§Ú©Ø³Ø³ÙˆØ±ÛŒ Ø§Ø¨Ø±ÛŒØ´Ù…ÛŒ</span>
+                <h3 class="font-serif text-2xl text-white font-bold">Ø´Ø§Ù„ Ø§Ø¨Ø±ÛŒØ´Ù… Ú©Ø§Ø´Ø§Ù†</h3>
+                <p class="font-sans text-sm text-white/90 mt-1 font-semibold">Û³,Û²Û°Û°,Û°Û°Û° ØªÙˆÙ…Ø§Ù†</p>
+              </div>
+              <button onclick="event.stopPropagation(); buyViaTelegram('kashan-silk-scarf')" class="bg-white text-neutral-900 px-4 py-2 rounded text-xs font-bold hover:bg-neutral-100 transition shadow flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-[16px]">send</span>
+                Ø®Ø±ÛŒØ¯ Ø¯Ø± ØªÙ„Ú¯Ø±Ø§Ù…
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Smaller Items Column -->
+        <div class="flex flex-col gap-gutter h-full">
+          <!-- Item 1 -->
+          <div class="group relative block h-[300px] md:h-1/2 overflow-hidden bg-surface-container-high rounded cursor-pointer" onclick="openQuickView('tabriz-leather-bag')">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYPSBzemx1-M5DoVsiLRc8ieJndcU1TqlT5fOkSY2qXwbYb-fzi7ngfb8xN0mu_RZZGzRAvvZG7EVWDgDfWyE68g0sY3lKYFXs25IkmCyHcfdiqCyiqpMrhvTLXUw8E5E1R-d-tMXHTFPAPLbBXLGMLv7V0zuL7gtRudGy56WbKxkvkTFXQtmYYHIla_mcEuvENx86NqBQpS7Fv6pVw_X1StFbJfVNB-AgIejJPDqroE5BJkPs-Y-M" alt="Ú©ÛŒÙ Ú†Ø±Ù… ØªØ¨Ø±ÛŒØ²">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 transition-opacity duration-300 flex items-end p-5">
+              <div class="text-right w-full flex justify-between items-end">
+                <div>
+                  <h3 class="font-serif text-lg text-white font-bold">Ú©ÛŒÙ Ú†Ø±Ù… ØªØ¨Ø±ÛŒØ²</h3>
+                  <p class="font-sans text-xs text-white/80 mt-0.5">Û´,Û¸Û°Û°,Û°Û°Û° ØªÙˆÙ…Ø§Ù†</p>
+                </div>
+                <button onclick="event.stopPropagation(); buyViaTelegram('tabriz-leather-bag')" class="bg-white/90 text-neutral-900 px-3 py-1.5 rounded text-[11px] font-bold hover:bg-white transition">
+                  Ø³ÙØ§Ø±Ø´
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="group relative block h-[300px] md:h-1/2 overflow-hidden bg-surface-container-high rounded cursor-pointer" onclick="openQuickView('mina-gold-bracelet')">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb15wJ2YOnMRlC1jNxF9IQjWPsPB9KKx1AVm5K_I6405iEEe1Whn7BUySWE8iN_k7NhiHRFMbhtuoT1lXiyB6soXGHJwFvm-JMZcohjADznh1whCXZ_rzlBE91Jgc5ZfyaSXcO6GRLhrrldgriDgj0XWjLNx0pmmaxNEQZ4fNn61GsDdtPf-HZB4tCGjZIutzJW7xAyGYCQeC8vMtTlWI3365izjWPZQ1iYpXZjOD67iFS_ZYdNUSS" alt="Ø¯Ø³ØªØ¨Ù†Ø¯ Ø·Ù„Ø§ Ø·Ø±Ø­ Ù…ÛŒÙ†Ø§">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 transition-opacity duration-300 flex items-end p-5">
+              <div class="text-right w-full flex justify-between items-end">
+                <div>
+                  <h3 class="font-serif text-lg text-white font-bold">Ø¯Ø³ØªØ¨Ù†Ø¯ Ø·Ù„Ø§ Ø·Ø±Ø­ Ù…ÛŒÙ†Ø§</h3>
+                  <p class="font-sans text-xs text-white/80 mt-0.5">Û±Û¸,ÛµÛ°Û°,Û°Û°Û° ØªÙˆÙ…Ø§Ù†</p>
+                </div>
+                <button onclick="event.stopPropagation(); buyViaTelegram('mina-gold-bracelet')" class="bg-white/90 text-neutral-900 px-3 py-1.5 rounded text-[11px] font-bold hover:bg-white transition">
+                  Ø³ÙØ§Ø±Ø´
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curated Collection Grid -->
+    <section class="py-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto bg-surface-container-low/40 rounded-2xl mb-20">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="font-serif text-3xl text-primary font-bold mb-3">Ù…Ù†ØªØ®Ø¨ ÙØµÙ„</h2>
+        <p class="text-sm text-secondary">Ù¾ÙˆØ´Ø§Ú©ÛŒ Ø¨Ø§ Ø·Ø±Ø§Ø­ÛŒ Ù…ÛŒÙ†ÛŒÙ…Ø§Ù„ Ùˆ Ù¾Ø§Ø±Ú†Ù‡â€ŒÙ‡Ø§ÛŒ Ù…Ø±ØºÙˆØ¨ Ø§Ø¨Ø±ÛŒØ´Ù…ØŒ Ù¾Ø´Ù… Ùˆ Ú©ØªØ§Ù†</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="home-products-grid">
+        <!-- Will be populated by JS -->
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="products.html" class="inline-block border border-primary text-primary px-10 py-3.5 text-xs font-bold hover:bg-neutral-900 hover:text-white transition-colors duration-300 rounded">
+          Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ú©Ø§ØªØ§Ù„ÙˆÚ¯ Ú©Ø§Ù…Ù„
+        </a>
+      </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="my-16 bg-surface-container-high relative overflow-hidden py-24 md:py-32 px-4">
+      <div class="max-w-3xl mx-auto relative z-10 text-center flex flex-col items-center">
+        <span class="material-symbols-outlined text-4xl text-primary mb-6">auto_awesome</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-primary font-bold mb-6">ÙØ±Ø§ØªØ± Ø§Ø² ÛŒÚ© Ù¾ÙˆØ´Ø´ØŒ ÛŒÚ© Ù…ÛŒØ±Ø§Ø«</h2>
+        <p class="font-sans text-base md:text-lg text-secondary leading-relaxed max-w-2xl mx-auto">
+          Ù…Ø§ Ø¯Ø± Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´ Ø¨Ø± Ø§ÛŒÙ† Ø¨Ø§ÙˆØ±ÛŒÙ… Ú©Ù‡ Ø²ÛŒØ¨Ø§ÛŒÛŒ ÙˆØ§Ù‚Ø¹ÛŒ Ø¯Ø± Ø³Ø§Ø¯Ú¯ÛŒ Ùˆ Ø§ØµØ§Ù„Øª Ù†Ù‡ÙØªÙ‡ Ø§Ø³Øª. Ø·Ø±Ø§Ø­ÛŒâ€ŒÙ‡Ø§ÛŒ Ù…Ø§ Ø¨Ø§Ø²ØªØ§Ø¨ÛŒ Ø§Ø² ØªØ§Ø±ÛŒØ® ØºÙ†ÛŒ Ù‡Ù†Ø± Ùˆ Ù†Ø³Ø§Ø¬ÛŒ Ø§ÛŒØ±Ø§Ù† Ø§Ø³Øª Ú©Ù‡ Ø¨Ø§ Ø²Ø¨Ø§Ù†ÛŒ Ù…Ø¯Ø±Ù† Ùˆ Ù…ÛŒÙ†ÛŒÙ…Ø§Ù„ Ø¨Ø±Ø§ÛŒ Ø§Ù†Ø³Ø§Ù† Ø§Ù…Ø±ÙˆØ²ÛŒ Ø¨Ø§Ø²Ø¢ÙØ±ÛŒÙ†ÛŒ Ø´Ø¯Ù‡â€ŒØ§Ù†Ø¯.
+        </p>
+        <a class="mt-10 inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-secondary transition-colors group" href="about.html">
+          <span>Ø¯Ø§Ø³ØªØ§Ù† Ø¨Ø±Ù†Ø¯ Ù…Ø§</span>
+          <span class="material-symbols-outlined text-sm transition-transform group-hover:-translate-x-1">arrow_back</span>
+        </a>
+      </div>
+      <div class="absolute top-0 right-0 w-64 h-64 bg-surface-variant rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-surface-container-highest rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 translate-y-1/2"></div>
+    </section>
+
+    <!-- Telegram VIP Order Banner -->
+    <section class="py-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <div class="bg-neutral-900 text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
+        <div class="text-right space-y-2 max-w-xl">
+          <div class="flex items-center gap-2 text-[#2AABEE]">
+            <span class="material-symbols-outlined">send</span>
+            <span class="text-xs font-bold uppercase tracking-widest">Ø®Ø±ÛŒØ¯ Ø¢Ø³Ø§Ù† Ùˆ Ø§Ø®ØªØµØ§ØµÛŒ</span>
+          </div>
+          <h3 class="font-serif text-2xl md:text-3xl font-bold">Ø³ÙØ§Ø±Ø´ Ùˆ Ù…Ø´Ø§ÙˆØ±Ù‡ Ø§Ø®ØªØµØ§ØµÛŒ Ø§Ø² ØªÙ„Ú¯Ø±Ø§Ù…</h3>
+          <p class="text-sm text-neutral-300 leading-relaxed">
+            ØªÙ…Ø§Ù…ÛŒ Ù…Ø­ØµÙˆÙ„Ø§Øª Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´ Ø¨Ø§ Ø§Ù…Ú©Ø§Ù† Ø§Ø³ØªØ¹Ù„Ø§Ù… Ø³Ø±ÛŒØ¹ Ø³Ø§ÛŒØ²ØŒ Ø§Ø±Ø³Ø§Ù„ ØªØµÙˆÛŒØ± ØªÙ†Ø®ÙˆØ± Ùˆ Ø§Ø±Ø³Ø§Ù„ Ø§Ú©Ø³Ù¾Ø±Ø³ Ø¨Ù‡ Ø³Ø±Ø§Ø³Ø± Ú©Ø´ÙˆØ± Ø§Ø² Ø·Ø±ÛŒÙ‚ Ø§Ø±ØªØ¨Ø§Ø· Ù…Ø³ØªÙ‚ÛŒÙ… Ø¨Ø§ Ø·Ø±Ø§Ø­Ø§Ù† Ù…Ø§ Ø¯Ø± ØªÙ„Ú¯Ø±Ø§Ù… Ù‚Ø§Ø¨Ù„ Ø«Ø¨Øª Ù‡Ø³ØªÙ†Ø¯.
+          </p>
+        </div>
+        <div class="shrink-0 flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+          <a href="https://t.me/StyleKish_Support" target="_blank" class="bg-[#2AABEE] hover:bg-[#2297d4] text-white py-3.5 px-8 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 shadow-lg">
+            <span class="material-symbols-outlined text-[18px]">send</span>
+            Ø§Ø±ØªØ¨Ø§Ø· Ù…Ø³ØªÙ‚ÛŒÙ… Ø¯Ø± ØªÙ„Ú¯Ø±Ø§Ù…
+          </a>
+          <a href="products.html?category=sale" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 py-3.5 px-6 rounded-lg text-xs font-bold transition text-center">
+            Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ø­Ø±Ø§Ø¬ ÙˆÛŒÚ˜Ù‡
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-high text-on-surface border-t border-outline-variant/30 mt-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto text-right font-sans">
+      <div class="md:col-span-2 space-y-4">
+        <h3 class="font-serif text-2xl text-primary font-bold">Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´</h3>
+        <p class="text-sm max-w-sm text-secondary leading-relaxed">ØªØ¬Ù„ÛŒ Ù‡Ù†Ø± Ø§ÛŒØ±Ø§Ù†ÛŒ Ø¯Ø± Ú©Ø§Ù„Ø¨Ø¯ Ù…Ø¯ Ù…Ø¯Ø±Ù†. Ù…Ø§ Ø²ÛŒØ¨Ø§ÛŒÛŒ Ø¬Ø§ÙˆØ¯Ø§Ù†Ù‡ Ø±Ø§ Ø¨Ø§ Ú©ÛŒÙÛŒØª Ø¨ÛŒâ€ŒÙ†Ø¸ÛŒØ± Ø¨Ø±Ø§ÛŒ Ø´Ù…Ø§ Ø¨Ù‡ Ø§Ø±Ù…ØºØ§Ù† Ù…ÛŒâ€ŒØ¢ÙˆØ±ÛŒÙ….</p>
+        <div class="pt-2 flex items-center gap-4 text-secondary">
+          <a href="https://t.me/StyleKish_Support" target="_blank" class="hover:text-primary transition" title="Ú©Ø§Ù†Ø§Ù„ ØªÙ„Ú¯Ø±Ø§Ù…"><span class="material-symbols-outlined text-[22px]">send</span></a>
+          <a href="contact.html" class="hover:text-primary transition" title="Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ"><span class="material-symbols-outlined text-[22px]">support_agent</span></a>
+          <a href="dashboard.html" class="hover:text-primary transition" title="Ù¾Ù†Ù„ Ù…Ø¯ÛŒØ±ÛŒØª"><span class="material-symbols-outlined text-[22px]">admin_panel_settings</span></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-primary mb-6 uppercase tracking-wider">Ù„ÛŒÙ†Ú©â€ŒÙ‡Ø§ÛŒ Ù…ÙÛŒØ¯</h4>
+        <ul class="space-y-3 text-sm text-secondary">
+          <li><a class="hover:text-primary transition-colors" href="about.html">Ø¯Ø§Ø³ØªØ§Ù† Ø¨Ø±Ù†Ø¯</a></li>
+          <li><a class="hover:text-primary transition-colors" href="products.html">Ú©Ø§ØªØ§Ù„ÙˆÚ¯ Ù…Ø­ØµÙˆÙ„Ø§Øª</a></li>
+          <li><a class="hover:text-primary transition-colors" href="contact.html">ØªÙ…Ø§Ø³ Ø¨Ø§ Ù…Ø§ Ùˆ Ø¢Ø¯Ø±Ø³â€ŒÙ‡Ø§</a></li>
+          <li><a class="hover:text-primary transition-colors" href="contact.html#faq">Ù¾Ø±Ø³Ø´â€ŒÙ‡Ø§ÛŒ Ù…ØªØ¯Ø§ÙˆÙ„</a></li>
+          <li><a class="hover:text-primary transition-colors" href="dashboard.html">Ø¯Ø§Ø´Ø¨ÙˆØ±Ø¯ Ù…Ø¯ÛŒØ±ÛŒØª</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-primary mb-6 uppercase tracking-wider">Ø¹Ø¶ÙˆÛŒØª Ø¯Ø± Ø®Ø¨Ø±Ù†Ø§Ù…Ù‡</h4>
+        <form class="newsletter-form flex flex-col gap-3">
+          <input class="bg-transparent border-0 border-b border-outline-variant text-right pb-2 focus:ring-0 focus:border-primary text-xs" placeholder="Ø§ÛŒÙ…ÛŒÙ„ Ø®ÙˆØ¯ Ø±Ø§ ÙˆØ§Ø±Ø¯ Ú©Ù†ÛŒØ¯..." type="email" required>
+          <button class="bg-primary text-white px-6 py-2.5 text-xs font-bold hover:bg-neutral-800 transition rounded w-fit self-start" type="submit">
+            Ø¹Ø¶ÙˆÛŒØª
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="border-t border-outline-variant/20 px-margin-mobile md:px-margin-desktop py-6 max-w-container-max mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-secondary">
+      <p>Â© Û±Û´Û°Ûµ Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´. ØªÙ…Ø§Ù…ÛŒ Ø­Ù‚ÙˆÙ‚ Ù…Ø­ÙÙˆØ¸ Ø§Ø³Øª.</p>
+      <p class="text-neutral-400">Ø·Ø±Ø§Ø­ÛŒ Ø´Ø¯Ù‡ Ø¨Ø± Ø§Ø³Ø§Ø³ Ø³ÛŒØ³ØªÙ… Ø¯ÛŒØ²Ø§ÛŒÙ† Silk &amp; Stone</p>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Drawer -->
+  <div id="cart-drawer-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-50 drawer-backdrop" onclick="toggleCartDrawer(false)">
+    <div id="cart-drawer-panel" class="absolute top-0 left-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col z-10 drawer-panel" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-5 border-b border-neutral-200">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+          <h3 class="font-serif text-lg font-bold">Ø³Ø¨Ø¯ Ø®Ø±ÛŒØ¯ Ø´Ù…Ø§</h3>
+        </div>
+        <button onclick="toggleCartDrawer(false)" class="text-neutral-500 hover:text-black">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <!-- Items List -->
+      <div id="cart-drawer-items" class="flex-grow overflow-y-auto divide-y divide-neutral-100">
+        <!-- Injected by Cart.renderCartDrawer() -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="cart-drawer-empty" class="p-8 text-center hidden my-auto">
+        <span class="material-symbols-outlined text-5xl text-neutral-300 mb-2">shopping_basket</span>
+        <p class="text-sm text-neutral-600 font-semibold mb-2">Ø³Ø¨Ø¯ Ø®Ø±ÛŒØ¯ Ø´Ù…Ø§ Ø®Ø§Ù„ÛŒ Ø§Ø³Øª</p>
+        <p class="text-xs text-neutral-400 mb-6">Ø§Ø² Ù…ÛŒØ§Ù† Ú©Ø§Ù„Ú©Ø´Ù†â€ŒÙ‡Ø§ÛŒ Ø¨ÛŒâ€ŒÙ†Ø¸ÛŒØ± Ù…Ø§ Ù…Ø­ØµÙˆÙ„ Ø¯Ù„Ø®ÙˆØ§Ù‡ Ø®ÙˆØ¯ Ø±Ø§ Ø§Ù†ØªØ®Ø§Ø¨ Ú©Ù†ÛŒØ¯.</p>
+        <a href="products.html" onclick="toggleCartDrawer(false)" class="inline-block bg-neutral-900 text-white px-6 py-2.5 rounded text-xs font-bold">
+          Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ù…Ø­ØµÙˆÙ„Ø§Øª
+        </a>
+      </div>
+
+      <!-- Footer Checkout -->
+      <div id="cart-drawer-footer" class="p-5 border-t border-neutral-200 bg-neutral-50 space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-xs text-neutral-500 font-semibold">Ù…Ø¨Ù„Øº Ù‚Ø§Ø¨Ù„ Ù¾Ø±Ø¯Ø§Ø®Øª:</span>
+          <span id="cart-drawer-total" class="text-base font-bold text-neutral-900 font-sans">Û° ØªÙˆÙ…Ø§Ù†</span>
+        </div>
+        <button onclick="Cart.checkoutViaTelegram()" class="w-full bg-[#2AABEE] hover:bg-[#2297d4] text-white py-3.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 shadow-md">
+          <span class="material-symbols-outlined text-[18px]">send</span>
+          Ø«Ø¨Øª Ø³ÙØ§Ø±Ø´ Ø¯Ø± ØªÙ„Ú¯Ø±Ø§Ù…
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <div id="mobile-menu-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-50 drawer-backdrop md:hidden" onclick="toggleMobileMenu(false)">
+    <div id="mobile-menu-panel" class="absolute top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white shadow-2xl flex flex-col z-10 drawer-panel-right text-right" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-5 border-b border-neutral-200">
+        <span class="font-serif text-xl font-bold">Ø§Ø³ØªØ§ÛŒÙ„ Ú©ÛŒØ´</span>
+        <button onclick="toggleMobileMenu(false)" class="text-neutral-500 hover:text-black">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <nav class="p-5 flex flex-col gap-4 text-sm font-semibold">
+        <a href="index.html" class="py-2 border-b border-neutral-100 text-neutral-900">ØµÙØ­Ù‡ Ø§ØµÙ„ÛŒ</a>
+        <a href="products.html?category=women" class="py-2 border-b border-neutral-100 text-neutral-700 hover:text-black">Ø²Ù†Ø§Ù†Ù‡</a>
+        <a href="products.html?category=men" class="py-2 border-b border-neutral-100 text-neutral-700 hover:text-black">Ù…Ø±Ø¯Ø§Ù†Ù‡</a>
+        <a href="products.html?category=new" class="py-2 border-b border-neutral-100 text-neutral-700 hover:text-black">Ø¬Ø¯ÛŒØ¯ØªØ±ÛŒÙ†â€ŒÙ‡Ø§</a>
+        <a href="products.html?category=sale" class="py-2 border-b border-neutral-100 text-red-600 font-bold">Ø­Ø±Ø§Ø¬ ÙØµÙ„</a>
+        <a href="about.html" class="py-2 border-b border-neutral-100 text-neutral-700 hover:text-black">Ø¯Ø§Ø³ØªØ§Ù† Ø¨Ø±Ù†Ø¯</a>
+        <a href="contact.html" class="py-2 border-b border-neutral-100 text-neutral-700 hover:text-black">ØªÙ…Ø§Ø³ Ø¨Ø§ Ù…Ø§</a>
+        <a href="dashboard.html" class="py-2 text-neutral-500 hover:text-black flex items-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">admin_panel_settings</span>
+          Ù¾Ù†Ù„ Ù…Ø¯ÛŒØ±ÛŒØª ÙØ±ÙˆØ´Ú¯Ø§Ù‡
+        </a>
+      </nav>
+
+      <div class="mt-auto p-5 border-t border-neutral-200 space-y-3">
+        <a href="https://t.me/StyleKish_Support" target="_blank" class="w-full bg-[#2AABEE] text-white py-3 rounded text-center text-xs font-bold flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[18px]">send</span>
+          Ù¾Ø´ØªÛŒØ¨Ø§Ù†ÛŒ ØªÙ„Ú¯Ø±Ø§Ù…
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    // Populate Featured Products on Homepage (fetched live from the API)
+    document.addEventListener('DOMContentLoaded', async () => {
+      const grid = document.getElementById('home-products-grid');
+      if (grid) {
+        const allProducts = await loadProductsData();
+        const products = allProducts.slice(0, 4);
+        grid.innerHTML = products.map(renderProductCard).join('');
+      }
+    });
+  </script>
+</body>
+</html>
+

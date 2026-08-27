@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>محصولات - استایل کیش</title>
+  <meta name="description" content="کاتالوگ کامل پوشاک زنانه، مردانه، اکسسوری و حراج‌های فصلی استایل کیش.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9f9",
+            "surface-dim": "#dadada",
+            "surface-bright": "#f9f9f9",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "surface-container-high": "#e8e8e8",
+            "surface-container-highest": "#e2e2e2",
+            "on-surface": "#1a1c1c",
+            "on-surface-variant": "#444748",
+            "outline": "#747878",
+            "outline-variant": "#c4c7c7",
+            "primary": "#000000",
+            "on-primary": "#ffffff",
+            "secondary": "#5f5e5b",
+            "secondary-container": "#e5e2dd",
+            "on-secondary-container": "#656461",
+            "tertiary": "#000000",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "background": "#f9f9f9",
+            "on-background": "#1a1c1c"
+          },
+          fontFamily: {
+            "serif": ["Libre Caslon Text", "Vazirmatn", "serif"],
+            "sans": ["Vazirmatn", "Be Vietnam Pro", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "64px",
+            "container-max": "1440px"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-black selection:text-white">
+
+  <!-- TopNavBar -->
+  <header class="sticky top-0 z-50 transition-all duration-300 glass-header border-b border-outline-variant/30">
+    <div class="flex flex-row-reverse justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+      
+      <!-- Utility Actions -->
+      <div class="flex items-center gap-4">
+        <button onclick="toggleSearchModal(true)" aria-label="جستجو" class="p-2 text-primary hover:text-secondary transition-colors" title="جستجو">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </button>
+        <button onclick="toggleCartDrawer(true)" aria-label="سبد خرید" class="p-2 text-primary hover:text-secondary transition-colors relative" title="سبد خرید">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="cart-count-badge hidden absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">۰</span>
+        </button>
+        <a href="products.html?filter=wishlist" aria-label="علاقه‌مندی‌ها" class="p-2 text-primary hover:text-secondary transition-colors relative hidden sm:block" title="علاقه‌مندی‌ها">
+          <span class="material-symbols-outlined text-[22px]">favorite</span>
+          <span class="wishlist-count-badge hidden absolute -top-1 -right-1 bg-red-600 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">۰</span>
+        </a>
+        <button onclick="toggleMobileMenu(true)" aria-label="منو" class="md:hidden p-2 text-primary">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex gap-8 items-center" dir="rtl">
+        <a class="nav-link font-sans text-sm text-secondary hover:text-primary transition-colors py-1" data-nav="women" href="products.html?category=women">زنانه</a>
+        <a class="nav-link font-sans text-sm text-secondary hover:text-primary transition-colors py-1" data-nav="men" href="products.html?category=men">مردانه</a>
+        <a class="nav-link font-sans text-sm text-secondary hover:text-primary transition-colors py-1" data-nav="new" href="products.html?category=new">جدیدترین‌ها</a>
+        <a class="nav-link font-sans text-sm text-secondary hover:text-primary transition-colors py-1" data-nav="sale" href="products.html?category=sale">حراج</a>
+        <a class="nav-link font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="about.html">داستان برند</a>
+        <a class="nav-link font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="contact.html">تماس با ما</a>
+      </nav>
+
+      <!-- Brand Logo -->
+      <div class="font-serif text-2xl md:text-3xl text-primary tracking-tight font-bold">
+        <a href="index.html" class="hover:opacity-80 transition-opacity">استایل کیش</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Canvas -->
+  <main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12">
+    
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="text-xs text-secondary flex items-center gap-2 mb-6">
+      <a class="hover:text-primary transition-colors" href="index.html">خانه</a>
+      <span>/</span>
+      <span id="breadcrumb-current" class="text-primary font-bold">تمام محصولات</span>
+    </nav>
+
+    <!-- Dynamic Hero Banner for Sale or Category Header -->
+    <section id="category-hero-banner" class="hidden relative w-full h-[320px] md:h-[440px] bg-surface-container-high rounded-xl overflow-hidden mb-12 flex items-center justify-center">
+      <div id="category-hero-bg" class="absolute inset-0 bg-cover bg-center opacity-85 mix-blend-multiply transition-all duration-700"></div>
+      <div class="relative z-10 text-center text-primary bg-white/70 backdrop-blur-md p-8 rounded-lg max-w-2xl border border-outline-variant/40 shadow-sm mx-4">
+        <h1 id="category-hero-title" class="font-serif text-3xl md:text-4xl mb-3 font-bold">فرصت‌های ویژه</h1>
+        <p id="category-hero-desc" class="font-sans text-sm md:text-base text-secondary">تخفیف‌های پایان فصل بر روی منتخب محصولات لوکس ایرانی</p>
+      </div>
+    </section>
+
+    <!-- Standard Category Header (When hero is hidden) -->
+    <section id="category-text-header" class="mb-8 text-right">
+      <h1 id="page-title" class="font-serif text-3xl md:text-4xl text-primary font-bold mb-3 tracking-tight">محصولات استایل کیش</h1>
+      <p id="page-description" class="text-sm md:text-base text-secondary max-w-2xl leading-relaxed">
+        کشف ظرافت بی‌انتها در جدیدترین کالکشن ما. ترکیبی از هنر اصیل ایرانی و طراحی مینیمال معاصر.
+      </p>
+    </section>
+
+    <!-- Subcategory Quick Filter Pills -->
+    <div id="subcategory-pills" class="flex flex-wrap gap-2 md:gap-3 mb-8 justify-start">
+      <button onclick="filterBySubcategory('all')" class="subcat-btn px-5 py-2 border border-neutral-900 bg-neutral-900 text-white rounded-full text-xs font-semibold transition shadow-sm">
+        همه
+      </button>
+      <button onclick="filterBySubcategory('manteau')" class="subcat-btn px-5 py-2 border border-outline-variant text-secondary hover:border-primary hover:text-primary rounded-full text-xs font-semibold transition">
+        مانتو و پالتو
+      </button>
+      <button onclick="filterBySubcategory('blouse')" class="subcat-btn px-5 py-2 border border-outline-variant text-secondary hover:border-primary hover:text-primary rounded-full text-xs font-semibold transition">
+        شومیز و پیراهن
+      </button>
+      <button onclick="filterBySubcategory('pants')" class="subcat-btn px-5 py-2 border border-outline-variant text-secondary hover:border-primary hover:text-primary rounded-full text-xs font-semibold transition">
+        شلوار
+      </button>
+      <button onclick="filterBySubcategory('blazer')" class="subcat-btn px-5 py-2 border border-outline-variant text-secondary hover:border-primary hover:text-primary rounded-full text-xs font-semibold transition">
+        کت و بلیزر
+      </button>
+      <button onclick="filterBySubcategory('scarf')" class="subcat-btn px-5 py-2 border border-outline-variant text-secondary hover:border-primary hover:text-primary rounded-full text-xs font-semibold transition">
+        شال و روسری
+      </button>
+      <button onclick="filterBySubcategory('shoes')" class="subcat-btn px-5 py-2 border border-outline-variant text-secondary hover:border-primary hover:text-primary rounded-full text-xs font-semibold transition">
+        کفش و چرم
+      </button>
+    </div>
+
+    <!-- Toolbar: Results Count & Sort -->
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-8 pb-4 border-b border-outline-variant/40 gap-4">
+      <span id="results-count" class="text-xs text-secondary font-semibold">
+        در حال بارگذاری محصولات...
+      </span>
+
+      <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+        <span class="text-xs text-secondary whitespace-nowrap">مرتب‌سازی بر اساس:</span>
+        <div class="relative">
+          <select id="sort-select" onchange="applyFiltersAndSort()" class="bg-transparent border-0 border-b border-neutral-300 py-1 pl-6 pr-2 text-xs font-bold text-primary focus:ring-0 cursor-pointer">
+            <option value="newest">جدیدترین‌ها</option>
+            <option value="price-asc">قیمت: کم به زیاد</option>
+            <option value="price-desc">قیمت: زیاد به کم</option>
+            <option value="discount">بیشترین تخفیف</option>
+          </select>
+          <span class="material-symbols-outlined absolute left-0 top-1 text-sm pointer-events-none text-neutral-500">expand_more</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Catalog Grid Layout with Sidebar Filters -->
+    <div class="flex flex-col md:flex-row gap-gutter items-start">
+      
+      <!-- Filters Sidebar (Sticky on desktop) -->
+      <aside class="w-full md:w-64 shrink-0 bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 sticky top-28 mb-8 md:mb-0">
+        <div class="flex justify-between items-center mb-6 pb-2 border-b border-primary">
+          <h2 class="text-xs font-bold text-primary uppercase tracking-widest">فیلترها</h2>
+          <button onclick="resetAllFilters()" class="text-[11px] text-secondary hover:text-primary underline">پاک کردن همه</button>
+        </div>
+
+        <div class="space-y-6">
+          
+          <!-- Gender/Main Category -->
+          <div class="pb-6 border-b border-outline-variant/30">
+            <h3 class="text-xs font-bold text-primary mb-3">دسته‌بندی اصلی</h3>
+            <div class="space-y-2 text-xs text-secondary">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="radio" name="filter-gender" value="all" onchange="applyFiltersAndSort()" checked class="text-primary focus:ring-0">
+                <span class="group-hover:text-primary transition">همه محصولات</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="radio" name="filter-gender" value="women" onchange="applyFiltersAndSort()" class="text-primary focus:ring-0">
+                <span class="group-hover:text-primary transition">مجموعه زنانه</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="radio" name="filter-gender" value="men" onchange="applyFiltersAndSort()" class="text-primary focus:ring-0">
+                <span class="group-hover:text-primary transition">مجموعه مردانه</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="radio" name="filter-gender" value="accessories" onchange="applyFiltersAndSort()" class="text-primary focus:ring-0">
+                <span class="group-hover:text-primary transition">اکسسوری و جواهرات</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Discount Filter -->
+          <div class="pb-6 border-b border-outline-variant/30">
+            <h3 class="text-xs font-bold text-primary mb-3">تخفیف و پیشنهادها</h3>
+            <div class="space-y-2 text-xs text-secondary">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" id="filter-sale-only" onchange="applyFiltersAndSort()" class="rounded text-primary focus:ring-0">
+                <span class="group-hover:text-primary transition">فقط کالاهای تخفیف‌دار</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input type="checkbox" id="filter-new-only" onchange="applyFiltersAndSort()" class="rounded text-primary focus:ring-0">
+                <span class="group-hover:text-primary transition">جدیدترین‌های فصل</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Size Filter -->
+          <div class="pb-6 border-b border-outline-variant/30">
+            <h3 class="text-xs font-bold text-primary mb-3">سایز</h3>
+            <div class="grid grid-cols-4 gap-1.5" id="size-filter-buttons">
+              <button onclick="toggleSizeFilter(this, '36')" class="size-filter-btn border border-outline-variant py-1.5 text-center text-xs rounded hover:border-primary transition">۳۶</button>
+              <button onclick="toggleSizeFilter(this, '38')" class="size-filter-btn border border-outline-variant py-1.5 text-center text-xs rounded hover:border-primary transition">۳۸</button>
+              <button onclick="toggleSizeFilter(this, '40')" class="size-filter-btn border border-outline-variant py-1.5 text-center text-xs rounded hover:border-primary transition">۴۰</button>
+              <button onclick="toggleSizeFilter(this, '42')" class="size-filter-btn border border-outline-variant py-1.5 text-center text-xs rounded hover:border-primary transition">۴۲</button>
+              <button onclick="toggleSizeFilter(this, 'S')" class="size-filter-btn border border-outline-variant py-1.5 text-center text-xs rounded hover:border-primary transition">S</button>
+              <button onclick="toggleSizeFilter(this, 'M')" class="size-filter-btn border border-outline-variant py-1.5 text-center text-xs rounded hover:border-primary transition">M</button>
+              <button onclick="toggleSizeFilter(this, 'L')" class="size-filter-btn border border-outline-variant py-1.5 text-center text-xs rounded hover:border-primary transition">L</button>
+              <button onclick="toggleSizeFilter(this, 'XL')" class="size-filter-btn border border-outline-variant py-1.5 text-center text-xs rounded hover:border-primary transition">XL</button>
+            </div>
+          </div>
+
+          <!-- Color Swatch Filter -->
+          <div>
+            <h3 class="text-xs font-bold text-primary mb-3">رنگ</h3>
+            <div class="flex flex-wrap gap-2.5">
+              <button onclick="toggleColorFilter(this, 'black')" title="مشکی" class="color-filter-btn w-6 h-6 rounded-full bg-black border border-outline-variant transition"></button>
+              <button onclick="toggleColorFilter(this, 'white')" title="سفید / عاجی" class="color-filter-btn w-6 h-6 rounded-full bg-white border border-outline-variant transition"></button>
+              <button onclick="toggleColorFilter(this, 'navy')" title="سرمه‌ای" class="color-filter-btn w-6 h-6 rounded-full bg-[#1c2e4a] border border-outline-variant transition"></button>
+              <button onclick="toggleColorFilter(this, 'beige')" title="بژ / خاکی" class="color-filter-btn w-6 h-6 rounded-full bg-[#e5e2dd] border border-outline-variant transition"></button>
+              <button onclick="toggleColorFilter(this, 'burgundy')" title="زرشکی" class="color-filter-btn w-6 h-6 rounded-full bg-[#5a1827] border border-outline-variant transition"></button>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- Products Grid -->
+      <div class="flex-grow w-full">
+        <div id="catalog-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+          <!-- Injected via JavaScript -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="no-products-found" class="hidden py-16 text-center bg-surface-container-lowest rounded-xl border border-outline-variant/30">
+          <span class="material-symbols-outlined text-4xl text-neutral-300 mb-2">filter_alt_off</span>
+          <h3 class="font-serif text-lg font-bold text-primary mb-1">محصولی با این مشخصات یافت نشد</h3>
+          <p class="text-xs text-secondary mb-4">لطفاً فیلترهای اعمال شده را تغییر دهید.</p>
+          <button onclick="resetAllFilters()" class="bg-neutral-900 text-white px-6 py-2 rounded text-xs font-bold">
+            مشاهده همه محصولات
+          </button>
+        </div>
+
+        <!-- Load More Button -->
+        <div id="load-more-container" class="mt-16 text-center">
+          <button onclick="loadMoreProducts()" class="border border-primary text-primary px-12 py-3.5 text-xs font-bold hover:bg-neutral-900 hover:text-white transition-colors duration-300 rounded">
+            نمایش محصولات بیشتر
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-high text-on-surface border-t border-outline-variant/30 mt-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto text-right font-sans">
+      <div class="md:col-span-2 space-y-4">
+        <h3 class="font-serif text-2xl text-primary font-bold">استایل کیش</h3>
+        <p class="text-sm max-w-sm text-secondary leading-relaxed">تجلی هنر ایرانی در کالبد مد مدرن. ما زیبایی جاودانه را با کیفیت بی‌نظیر برای شما به ارمغان می‌آوریم.</p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-primary mb-6 uppercase tracking-wider">لینک‌های مفید</h4>
+        <ul class="space-y-3 text-sm text-secondary">
+          <li><a class="hover:text-primary transition-colors" href="about.html">داستان برند</a></li>
+          <li><a class="hover:text-primary transition-colors" href="contact.html">تماس با ما</a></li>
+          <li><a class="hover:text-primary transition-colors" href="contact.html#faq">پرسش‌های متداول</a></li>
+          <li><a class="hover:text-primary transition-colors" href="dashboard.html">پنل مدیریت</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-primary mb-6 uppercase tracking-wider">پشتیبانی تلگرام</h4>
+        <p class="text-xs text-secondary mb-3">پاسخگویی آنلاین و ثبت سفارش اختصاصی ۲۴ ساعته</p>
+        <a href="https://t.me/StyleKish_Support" target="_blank" class="inline-flex items-center gap-2 bg-[#2AABEE] text-white px-5 py-2.5 rounded text-xs font-bold">
+          <span class="material-symbols-outlined text-sm">send</span>
+          @StyleKish_Support
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Drawer & Mobile Menu -->
+  <div id="cart-drawer-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-50 drawer-backdrop" onclick="toggleCartDrawer(false)">
+    <div id="cart-drawer-panel" class="absolute top-0 left-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col z-10 drawer-panel" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-5 border-b border-neutral-200">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+          <h3 class="font-serif text-lg font-bold">سبد خرید شما</h3>
+        </div>
+        <button onclick="toggleCartDrawer(false)" class="text-neutral-500 hover:text-black"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div id="cart-drawer-items" class="flex-grow overflow-y-auto divide-y divide-neutral-100"></div>
+      <div id="cart-drawer-empty" class="p-8 text-center hidden my-auto">
+        <span class="material-symbols-outlined text-5xl text-neutral-300 mb-2">shopping_basket</span>
+        <p class="text-sm text-neutral-600 font-semibold mb-2">سبد خرید شما خالی است</p>
+      </div>
+      <div id="cart-drawer-footer" class="p-5 border-t border-neutral-200 bg-neutral-50 space-y-4">
+        <div class="flex justify-between items-center">
+          <span class="text-xs text-neutral-500 font-semibold">مبلغ کل:</span>
+          <span id="cart-drawer-total" class="text-base font-bold text-neutral-900 font-sans">۰ تومان</span>
+        </div>
+        <button onclick="Cart.checkoutViaTelegram()" class="w-full bg-[#2AABEE] hover:bg-[#2297d4] text-white py-3.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 shadow-md">
+          <span class="material-symbols-outlined text-[18px]">send</span>
+          ثبت سفارش در تلگرام
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-50 drawer-backdrop md:hidden" onclick="toggleMobileMenu(false)">
+    <div id="mobile-menu-panel" class="absolute top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white shadow-2xl flex flex-col z-10 drawer-panel-right text-right" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-5 border-b border-neutral-200">
+        <span class="font-serif text-xl font-bold">استایل کیش</span>
+        <button onclick="toggleMobileMenu(false)" class="text-neutral-500 hover:text-black"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <nav class="p-5 flex flex-col gap-4 text-sm font-semibold">
+        <a href="index.html" class="py-2 border-b border-neutral-100 text-neutral-700">صفحه اصلی</a>
+        <a href="products.html?category=women" class="py-2 border-b border-neutral-100 text-neutral-900">زنانه</a>
+        <a href="products.html?category=men" class="py-2 border-b border-neutral-100 text-neutral-900">مردانه</a>
+        <a href="products.html?category=new" class="py-2 border-b border-neutral-100 text-neutral-900">جدیدترین‌ها</a>
+        <a href="products.html?category=sale" class="py-2 border-b border-neutral-100 text-red-600">حراج فصل</a>
+        <a href="about.html" class="py-2 border-b border-neutral-100 text-neutral-700">داستان برند</a>
+        <a href="contact.html" class="py-2 text-neutral-700">تماس با ما</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    // State for catalog filtering
+    let activeCategory = 'all'; // all, women, men, accessories, sale, new
+    let activeSubCategory = 'all';
+    let selectedSize = null;
+    let selectedColor = null;
+    let visibleLimit = 12;
+
+    // Read URL Parameters on load
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadProductsData(); // دریافت لیست تازه‌ی محصولات از API قبل از رندر
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('category');
+      const filterParam = urlParams.get('filter');
+
+      if (catParam) {
+        activeCategory = catParam;
+        
+        // Highlight corresponding top nav link
+        document.querySelectorAll('.nav-link').forEach(link => {
+          if (link.getAttribute('data-nav') === catParam) {
+            link.classList.remove('text-secondary');
+            link.classList.add('text-primary', 'font-bold', 'border-b', 'border-primary');
+          }
+        });
+      }
+
+      if (filterParam === 'wishlist') {
+        activeCategory = 'wishlist';
+      }
+
+      updatePageHeader();
+      applyFiltersAndSort();
+    });
+
+    function updatePageHeader() {
+      const heroBanner = document.getElementById('category-hero-banner');
+      const textHeader = document.getElementById('category-text-header');
+      const breadcrumbCurrent = document.getElementById('breadcrumb-current');
+      const heroTitle = document.getElementById('category-hero-title');
+      const heroDesc = document.getElementById('category-hero-desc');
+      const heroBg = document.getElementById('category-hero-bg');
+      const pageTitle = document.getElementById('page-title');
+      const pageDesc = document.getElementById('page-description');
+
+      // Sync radio filter
+      const radio = document.querySelector(`input[name="filter-gender"][value="${activeCategory}"]`);
+      if (radio) radio.checked = true;
+
+      if (activeCategory === 'sale') {
+        heroBanner.classList.remove('hidden');
+        textHeader.classList.add('hidden');
+        heroTitle.textContent = "فرصت‌های ویژه";
+        heroDesc.textContent = "تخفیف‌های پایان فصل بر روی منتخب محصولات لوکس ایرانی";
+        heroBg.style.backgroundImage = "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDD7EHimD__b_1SQcSK-ugi8ypYvegzYbTewV0HA8JVkw3X5h61u8bcHfJgGaym9Qe9_OLSB88A6Rb7v0KBtm292tqRFfNXKvPApcIi6CEJ4F0yQQvUaOHw7Vlw9TP8kFDJSinaiv6MVhF4sQ17ROXm6h7XOTRNaWEAYWSN9wBp1C-I0EqM-AwzEfWIKPViV3hmFvU_NP78jMioUuZs-6oo4e1jO60AHoECt8QW3i-ibe18HdJ-J9vj')";
+        breadcrumbCurrent.textContent = "حراج و فرصت‌های ویژه";
+        document.title = "حراج - استایل کیش";
+        document.getElementById('filter-sale-only').checked = true;
+      } else if (activeCategory === 'women') {
+        heroBanner.classList.add('hidden');
+        textHeader.classList.remove('hidden');
+        pageTitle.textContent = "مجموعه زنانه";
+        pageDesc.textContent = "کشف ظرافت بی‌انتها در جدیدترین کالکشن ما. ترکیبی از هنر اصیل ایرانی و طراحی مینیمال معاصر، خلق شده برای زن مدرن.";
+        breadcrumbCurrent.textContent = "زنانه";
+        document.title = "کالکشن زنانه - استایل کیش";
+      } else if (activeCategory === 'men') {
+        heroBanner.classList.add('hidden');
+        textHeader.classList.remove('hidden');
+        pageTitle.textContent = "کالکشن مردانه";
+        pageDesc.textContent = "کشف ظرافت بی‌بدیل در مجموعه‌ی مردانه پرشین لوکس. ترکیبی از هنر اصیل ایرانی و طراحی مینیمال معاصر، خلق شده برای مردانی که به جزئیات اهمیت می‌دهند.";
+        breadcrumbCurrent.textContent = "مردانه";
+        document.title = "کالکشن مردانه - استایل کیش";
+      } else if (activeCategory === 'new') {
+        heroBanner.classList.add('hidden');
+        textHeader.classList.remove('hidden');
+        pageTitle.textContent = "جدیدترین‌های فصل";
+        pageDesc.textContent = "آخرین آثار طراحی شده با الهام از هنر اصیل ایرانی و متریال درجه یک. مجموعه‌ای بی‌نظیر برای استایل مدرن شما.";
+        breadcrumbCurrent.textContent = "جدیدترین‌ها";
+        document.title = "جدیدترین‌ها - استایل کیش";
+        document.getElementById('filter-new-only').checked = true;
+      } else if (activeCategory === 'wishlist') {
+        heroBanner.classList.add('hidden');
+        textHeader.classList.remove('hidden');
+        pageTitle.textContent = "علاقه‌مندی‌های شما";
+        pageDesc.textContent = "محصولاتی که برای خرید و بررسی‌های بعدی ذخیره کرده‌اید.";
+        breadcrumbCurrent.textContent = "علاقه‌مندی‌ها";
+        document.title = "علاقه‌مندی‌ها - استایل کیش";
+      } else {
+        heroBanner.classList.add('hidden');
+        textHeader.classList.remove('hidden');
+        pageTitle.textContent = "کاتالوگ کامل محصولات";
+        pageDesc.textContent = "تمامی کالکشن‌های زنانه، مردانه و اکسسوری‌های دست‌ساز استایل کیش.";
+        breadcrumbCurrent.textContent = "تمام محصولات";
+        document.title = "محصولات - استایل کیش";
+      }
+    }
+
+    function filterBySubcategory(subcat) {
+      activeSubCategory = subcat;
+      document.querySelectorAll('.subcat-btn').forEach(btn => {
+        btn.classList.remove('border-neutral-900', 'bg-neutral-900', 'text-white');
+        btn.classList.add('border-outline-variant', 'text-secondary');
+      });
+      event.target.classList.add('border-neutral-900', 'bg-neutral-900', 'text-white');
+      event.target.classList.remove('border-outline-variant', 'text-secondary');
+      applyFiltersAndSort();
+    }
+
+    function toggleSizeFilter(btn, size) {
+      if (selectedSize === size) {
+        selectedSize = null;
+        btn.classList.remove('bg-neutral-900', 'text-white');
+      } else {
+        document.querySelectorAll('.size-filter-btn').forEach(b => b.classList.remove('bg-neutral-900', 'text-white'));
+        selectedSize = size;
+        btn.classList.add('bg-neutral-900', 'text-white');
+      }
+      applyFiltersAndSort();
+    }
+
+    function toggleColorFilter(btn, color) {
+      if (selectedColor === color) {
+        selectedColor = null;
+        btn.classList.remove('ring-2', 'ring-offset-2', 'ring-neutral-900');
+      } else {
+        document.querySelectorAll('.color-filter-btn').forEach(b => b.classList.remove('ring-2', 'ring-offset-2', 'ring-neutral-900'));
+        selectedColor = color;
+        btn.classList.add('ring-2', 'ring-offset-2', 'ring-neutral-900');
+      }
+      applyFiltersAndSort();
+    }
+
+    function resetAllFilters() {
+      activeCategory = 'all';
+      activeSubCategory = 'all';
+      selectedSize = null;
+      selectedColor = null;
+      document.getElementById('filter-sale-only').checked = false;
+      document.getElementById('filter-new-only').checked = false;
+      document.querySelectorAll('.size-filter-btn').forEach(b => b.classList.remove('bg-neutral-900', 'text-white'));
+      document.querySelectorAll('.color-filter-btn').forEach(b => b.classList.remove('ring-2', 'ring-offset-2', 'ring-neutral-900'));
+      document.querySelectorAll('.subcat-btn').forEach((btn, i) => {
+        if (i === 0) {
+          btn.classList.add('border-neutral-900', 'bg-neutral-900', 'text-white');
+          btn.classList.remove('border-outline-variant', 'text-secondary');
+        } else {
+          btn.classList.remove('border-neutral-900', 'bg-neutral-900', 'text-white');
+          btn.classList.add('border-outline-variant', 'text-secondary');
+        }
+      });
+      updatePageHeader();
+      applyFiltersAndSort();
+    }
+
+    function applyFiltersAndSort() {
+      const allProducts = getProductsData();
+      const saleOnly = document.getElementById('filter-sale-only').checked;
+      const newOnly = document.getElementById('filter-new-only').checked;
+      const sortValue = document.getElementById('sort-select').value;
+      const genderRadios = document.querySelector('input[name="filter-gender"]:checked');
+      const selectedGender = genderRadios ? genderRadios.value : 'all';
+
+      let filtered = allProducts.filter(p => {
+        // Category / Gender filter
+        if (activeCategory === 'wishlist') {
+          return Wishlist.has(p.id);
+        }
+        if (activeCategory === 'sale' && !p.isSale) return false;
+        if (activeCategory === 'new' && !p.isNew) return false;
+        if (activeCategory === 'women' && p.category !== 'women') return false;
+        if (activeCategory === 'men' && p.category !== 'men') return false;
+
+        if (selectedGender !== 'all') {
+          if (p.category !== selectedGender && p.gender !== selectedGender) return false;
+        }
+
+        // Subcategory
+        if (activeSubCategory !== 'all' && p.subCategory !== activeSubCategory) return false;
+
+        // Checkbox flags
+        if (saleOnly && !p.isSale) return false;
+        if (newOnly && !p.isNew) return false;
+
+        // Size
+        if (selectedSize && p.sizes && !p.sizes.includes(selectedSize)) return false;
+
+        return true;
+      });
+
+      // Sorting
+      if (sortValue === 'price-asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortValue === 'price-desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (sortValue === 'discount') {
+        filtered.sort((a, b) => (b.discountPercent || 0) - (a.discountPercent || 0));
+      } else {
+        // Newest default
+        filtered.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+      }
+
+      // Render
+      const grid = document.getElementById('catalog-products-grid');
+      const countEl = document.getElementById('results-count');
+      const emptyEl = document.getElementById('no-products-found');
+      const loadMoreContainer = document.getElementById('load-more-container');
+
+      countEl.textContent = `نمایش ${toPersianDigits(Math.min(filtered.length, visibleLimit))} از ${toPersianDigits(filtered.length)} محصول`;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        emptyEl.classList.remove('hidden');
+        if (loadMoreContainer) loadMoreContainer.classList.add('hidden');
+        return;
+      }
+
+      emptyEl.classList.add('hidden');
+      const visibleProducts = filtered.slice(0, visibleLimit);
+      grid.innerHTML = visibleProducts.map(renderProductCard).join('');
+
+      if (loadMoreContainer) {
+        if (filtered.length > visibleLimit) {
+          loadMoreContainer.classList.remove('hidden');
+        } else {
+          loadMoreContainer.classList.add('hidden');
+        }
+      }
+    }
+
+    function loadMoreProducts() {
+      visibleLimit += 8;
+      applyFiltersAndSort();
+    }
+  </script>
+</body>
+</html>

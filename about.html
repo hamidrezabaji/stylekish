@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>داستان برند - استایل کیش</title>
+  <meta name="description" content="داستان شکل‌گیری استایل کیش، فلسفه طراحی ابریشم و سنگ و هنر دست استادکاران ایرانی.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9f9",
+            "surface-dim": "#dadada",
+            "surface-bright": "#f9f9f9",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "surface-container-high": "#e8e8e8",
+            "surface-container-highest": "#e2e2e2",
+            "on-surface": "#1a1c1c",
+            "on-surface-variant": "#444748",
+            "outline": "#747878",
+            "outline-variant": "#c4c7c7",
+            "primary": "#000000",
+            "on-primary": "#ffffff",
+            "secondary": "#5f5e5b",
+            "secondary-container": "#e5e2dd",
+            "on-secondary-container": "#656461",
+            "tertiary": "#000000",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "background": "#f9f9f9",
+            "on-background": "#1a1c1c"
+          },
+          fontFamily: {
+            "serif": ["Libre Caslon Text", "Vazirmatn", "serif"],
+            "sans": ["Vazirmatn", "Be Vietnam Pro", "sans-serif"]
+          },
+          spacing: {
+            "gutter": "24px",
+            "margin-mobile": "16px",
+            "margin-desktop": "64px",
+            "container-max": "1440px"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col antialiased selection:bg-black selection:text-white">
+
+  <!-- TopNavBar -->
+  <header class="sticky top-0 z-50 transition-all duration-300 glass-header border-b border-outline-variant/30">
+    <div class="flex flex-row-reverse justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20">
+      <div class="flex items-center gap-4">
+        <button onclick="toggleSearchModal(true)" aria-label="جستجو" class="p-2 text-primary hover:text-secondary transition-colors" title="جستجو">
+          <span class="material-symbols-outlined text-[22px]">search</span>
+        </button>
+        <button onclick="toggleCartDrawer(true)" aria-label="سبد خرید" class="p-2 text-primary hover:text-secondary transition-colors relative" title="سبد خرید">
+          <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <span class="cart-count-badge hidden absolute -top-1 -right-1 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">۰</span>
+        </button>
+        <button onclick="toggleMobileMenu(true)" aria-label="منو" class="md:hidden p-2 text-primary">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+
+      <nav class="hidden md:flex gap-8 items-center" dir="rtl">
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=women">زنانه</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=men">مردانه</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=new">جدیدترین‌ها</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="products.html?category=sale">حراج</a>
+        <a class="font-sans text-sm text-primary font-bold border-b border-primary pb-1" href="about.html">داستان برند</a>
+        <a class="font-sans text-sm text-secondary hover:text-primary transition-colors py-1" href="contact.html">تماس با ما</a>
+      </nav>
+
+      <div class="font-serif text-2xl md:text-3xl text-primary tracking-tight font-bold">
+        <a href="index.html" class="hover:opacity-80 transition-opacity">استایل کیش</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="flex-grow">
+    
+    <!-- Hero Banner -->
+    <section class="relative py-20 md:py-28 bg-surface-container-high overflow-hidden border-b border-outline-variant/30 text-center px-4">
+      <div class="max-w-3xl mx-auto relative z-10 space-y-4">
+        <span class="text-xs font-bold text-secondary uppercase tracking-widest block">اصالت، هنر و سادگی جاودانه</span>
+        <h1 class="font-serif text-3xl sm:text-5xl text-primary font-bold tracking-tight">داستان استایل کیش</h1>
+        <p class="font-sans text-sm sm:text-base text-secondary max-w-xl mx-auto leading-relaxed">
+          روایتی از تلفیق میراث چندهزارساله نساجی و معماری ایران با زبان طراحی مینیمال و فاخر معاصر.
+        </p>
+      </div>
+    </section>
+
+    <!-- Core Philosophy Section -->
+    <section class="py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="space-y-6 text-right font-sans">
+          <span class="text-xs font-bold text-secondary uppercase tracking-widest block">فلسفه دیزاین: ابریشم و سنگ (Silk &amp; Stone)</span>
+          <h2 class="font-serif text-3xl md:text-4xl text-primary font-bold leading-snug">
+            زیبایی در نقطه تعادل لطافت و صلابت
+          </h2>
+          <p class="text-sm md:text-base text-secondary leading-relaxed">
+            استایل کیش در جزیره زیبای کیش متولد شد؛ جایی که تلاقی آب‌های فیروزه‌ای خلیج فارس با صخره‌های مرجانی و بادهای آزاد، الهام‌بخش مفهوم اولیه برند ما شد. ما خطوط هندسی معماری اصیل ایرانی (طاق‌ها، مقرنس‌ها و کاربندی‌های اصفهان و یزد) را با لطافت ابریشم طبیعی و پشم اعلا درآمیخته‌ایم.
+          </p>
+          <p class="text-sm md:text-base text-secondary leading-relaxed">
+            ما بر این باوریم که پوشاک لوکس نباید پر سر و صدا یا گذرا باشد. طراحی‌های استایل کیش برای نسلی است که ارزش خلوص، برش‌های بی‌نقص و پایداری را درک می‌کنند.
+          </p>
+          <div class="pt-4">
+            <a href="products.html" class="inline-block bg-primary text-white px-8 py-3.5 rounded text-xs font-bold hover:bg-neutral-800 transition shadow">
+              مشاهده محصولات کالکشن
+            </a>
+          </div>
+        </div>
+
+        <div class="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-surface-container">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzkW887zrZPGfI3Q2W_dKMNzMFhyrYMzh1CTPkIIaGQJr23iWBfET7ZMsa2qPULANhAjtmy_Rxxh6h28a0mkW5X-Rmoi-ficIizyktjGaaviW2bRpDkhsK_aMFT069u_Y90Nj_xSHDiaPNjJIKt1QmSV0PYwOS8tRQKcxAO1p1OaV0AcbXmrEoS93RtBXnb14rdagO8ODrq201maD_EWJA0AbjFMBdBuQIVtRigdP8nXIi7A_OiVU_" alt="کارگاه استایل کیش" class="w-full h-full object-cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- Pillars of Excellence -->
+    <section class="py-20 bg-surface-container-low border-y border-outline-variant/30 px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-container-max mx-auto text-center mb-16">
+        <h2 class="font-serif text-3xl text-primary font-bold mb-3">ارکان آفرینش در استایل کیش</h2>
+        <p class="text-sm text-secondary max-w-xl mx-auto">تعهد ما به بالاترین استانداردهای کیفی در هنر دست و متریال پایدار</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-container-max mx-auto text-right font-sans">
+        <!-- Pillar 1 -->
+        <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 space-y-4">
+          <span class="material-symbols-outlined text-4xl text-primary">texture</span>
+          <h3 class="font-serif text-xl font-bold text-primary">الیاف ۱۰۰٪ طبیعی و ارگانیک</h3>
+          <p class="text-xs md:text-sm text-secondary leading-relaxed">
+            ابریشم توت طبیعی کاشان، پشم و کشمیر ناب دامنه زاگرس، کتان خالص و چرم گیاهی دباغی تبریز. ما هیچ‌گاه از الیاف مصنوعی یا پلی‌استر در مجموعه‌های اصلی استفاده نمی‌کنیم.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 space-y-4">
+          <span class="material-symbols-outlined text-4xl text-primary">handshake</span>
+          <h3 class="font-serif text-xl font-bold text-primary">دست‌ساز توسط استادکاران کهنه‌کار</h3>
+          <p class="text-xs md:text-sm text-secondary leading-relaxed">
+            هر اثر توسط ماهرترین خیاطان سفارشی‌دوز و استادکاران قلم‌زنی و سوزن‌دوزی با دقت میلی‌متری و ساعت‌ها کار دستی آراسته و تکمیل می‌گردد.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-surface-container-lowest p-8 rounded-xl border border-outline-variant/40 space-y-4">
+          <span class="material-symbols-outlined text-4xl text-primary">all_inclusive</span>
+          <h3 class="font-serif text-xl font-bold text-primary">مد آهسته و پایداری (Slow Fashion)</h3>
+          <p class="text-xs md:text-sm text-secondary leading-relaxed">
+            ما بر خلاف فست‌فشن، در تیراژهای محدود و با تمرکز بر دوام چند ده‌ساله لباس تولید می‌کنیم؛ تا هر لباس به گنجینه‌ای باارزش در کمد شما تبدیل شود.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Telegram Direct Ordering Promise -->
+    <section class="py-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
+      <div class="max-w-2xl mx-auto space-y-6">
+        <span class="material-symbols-outlined text-5xl text-[#2AABEE]">send</span>
+        <h2 class="font-serif text-3xl text-primary font-bold">تجربه خرید تشریفاتی در تلگرام</h2>
+        <p class="text-sm text-secondary leading-relaxed">
+          تیم پشتیبانی و طراحان ما آماده‌اند تا مشاور اختصاصی استایل شما باشند. از بررسی دقیق سایز تا انتخاب رنگ هماهنگ با پوست و ارسال کالیته پارچه، تنها با یک پیام در تلگرام در کنار شما هستیم.
+        </p>
+        <a href="https://t.me/StyleKish_Support" target="_blank" class="inline-flex items-center gap-2 bg-[#2AABEE] text-white px-8 py-3.5 rounded-lg text-xs font-bold shadow-lg hover:bg-[#2297d4] transition">
+          <span class="material-symbols-outlined text-sm">send</span>
+          گفتگو با مشاور ارشد مد در تلگرام
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-surface-container-high text-on-surface border-t border-outline-variant/30 mt-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-16 max-w-container-max mx-auto text-right font-sans">
+      <div class="md:col-span-2 space-y-4">
+        <h3 class="font-serif text-2xl text-primary font-bold">استایل کیش</h3>
+        <p class="text-sm max-w-sm text-secondary leading-relaxed">تجلی هنر ایرانی در کالبد مد مدرن. ما زیبایی جاودانه را با کیفیت بی‌نظیر برای شما به ارمغان می‌آوریم.</p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-primary mb-6 uppercase tracking-wider">لینک‌های مفید</h4>
+        <ul class="space-y-3 text-sm text-secondary">
+          <li><a class="hover:text-primary transition-colors" href="about.html">داستان برند</a></li>
+          <li><a class="hover:text-primary transition-colors" href="products.html">کاتالوگ محصولات</a></li>
+          <li><a class="hover:text-primary transition-colors" href="contact.html">تماس با ما</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold text-primary mb-6 uppercase tracking-wider">پشتیبانی تلگرام</h4>
+        <a href="https://t.me/StyleKish_Support" target="_blank" class="inline-flex items-center gap-2 bg-[#2AABEE] text-white px-5 py-2.5 rounded text-xs font-bold">
+          <span class="material-symbols-outlined text-sm">send</span>
+          @StyleKish_Support
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shopping Cart Drawer & Mobile Menu -->
+  <div id="cart-drawer-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-50 drawer-backdrop" onclick="toggleCartDrawer(false)">
+    <div id="cart-drawer-panel" class="absolute top-0 left-0 bottom-0 w-full max-w-md bg-white shadow-2xl flex flex-col z-10 drawer-panel" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-5 border-b border-neutral-200">
+        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><h3 class="font-serif text-lg font-bold">سبد خرید شما</h3></div>
+        <button onclick="toggleCartDrawer(false)" class="text-neutral-500 hover:text-black"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <div id="cart-drawer-items" class="flex-grow overflow-y-auto divide-y divide-neutral-100"></div>
+      <div id="cart-drawer-empty" class="p-8 text-center hidden my-auto">
+        <span class="material-symbols-outlined text-5xl text-neutral-300 mb-2">shopping_basket</span>
+        <p class="text-sm text-neutral-600 font-semibold mb-2">سبد خرید شما خالی است</p>
+      </div>
+      <div id="cart-drawer-footer" class="p-5 border-t border-neutral-200 bg-neutral-50 space-y-4">
+        <div class="flex justify-between items-center"><span class="text-xs text-neutral-500 font-semibold">مبلغ کل:</span><span id="cart-drawer-total" class="text-base font-bold text-neutral-900 font-sans">۰ تومان</span></div>
+        <button onclick="Cart.checkoutViaTelegram()" class="w-full bg-[#2AABEE] hover:bg-[#2297d4] text-white py-3.5 rounded-lg text-xs font-bold transition flex items-center justify-center gap-2 shadow-md">
+          <span class="material-symbols-outlined text-[18px]">send</span>
+          ثبت سفارش در تلگرام
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu-backdrop" class="fixed inset-0 bg-neutral-900/60 backdrop-blur-sm z-50 drawer-backdrop md:hidden" onclick="toggleMobileMenu(false)">
+    <div id="mobile-menu-panel" class="absolute top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white shadow-2xl flex flex-col z-10 drawer-panel-right text-right" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between p-5 border-b border-neutral-200">
+        <span class="font-serif text-xl font-bold">استایل کیش</span>
+        <button onclick="toggleMobileMenu(false)" class="text-neutral-500 hover:text-black"><span class="material-symbols-outlined">close</span></button>
+      </div>
+      <nav class="p-5 flex flex-col gap-4 text-sm font-semibold">
+        <a href="index.html" class="py-2 border-b border-neutral-100 text-neutral-700">صفحه اصلی</a>
+        <a href="products.html?category=women" class="py-2 border-b border-neutral-100 text-neutral-900">زنانه</a>
+        <a href="products.html?category=men" class="py-2 border-b border-neutral-100 text-neutral-900">مردانه</a>
+        <a href="products.html?category=new" class="py-2 border-b border-neutral-100 text-neutral-900">جدیدترین‌ها</a>
+        <a href="products.html?category=sale" class="py-2 border-b border-neutral-100 text-red-600">حراج فصل</a>
+        <a href="about.html" class="py-2 border-b border-neutral-100 text-neutral-900 font-bold">داستان برند</a>
+        <a href="contact.html" class="py-2 text-neutral-700">تماس با ما</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/products-data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
