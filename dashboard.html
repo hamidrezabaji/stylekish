@@ -298,33 +298,49 @@
     }
 
     function openProductModal(product = null) {
-      const modal = document.getElementById('product-admin-modal');
-      const title = document.getElementById('admin-modal-title');
-      
-      if (product) {
-        title.textContent = `ویرایش: ${product.name}`;
-        document.getElementById('form-product-id').value = product.id;
-        document.getElementById('form-name').value = product.name;
-        document.getElementById('form-sku').value = product.sku;
-        document.getElementById('form-category').value = product.category;
-        document.getElementById('form-price').value = product.price;
-        document.getElementById('form-original-price').value = product.originalPrice || product.price;
-        document.getElementById('form-image').value = product.image;
-        document.getElementById('form-desc').value = product.description || '';
-        document.getElementById('form-is-new').checked = !!product.isNew;
-        document.getElementById('form-is-sale').checked = !!product.isSale;
-      } else {
-        title.textContent = 'افزودن محصول جدید';
-        document.getElementById('form-product-id').value = '';
-        document.querySelector('#product-admin-modal form').reset();
-      }
+  const modal = document.getElementById('product-admin-modal');
+  const title = document.getElementById('admin-modal-title');
 
-      modal.classList.remove('hidden');
-    }
+  if (!modal) return;
 
-    function closeProductModal() {
-      document.getElementById('product-admin-modal').classList.add('hidden');
-    }
+  if (product) {
+    title.textContent = `ویرایش: ${product.name}`;
+    document.getElementById('form-product-id').value = product.id;
+    document.getElementById('form-name').value = product.name || '';
+    document.getElementById('form-sku').value = product.sku || '';
+    document.getElementById('form-category').value = product.category || 'women';
+    document.getElementById('form-price').value = product.price || '';
+    document.getElementById('form-original-price').value =
+      product.originalPrice || product.price || '';
+    document.getElementById('form-image').value = product.image || '';
+    document.getElementById('form-desc').value = product.description || '';
+    document.getElementById('form-is-new').checked = !!product.isNew;
+    document.getElementById('form-is-sale').checked = !!product.isSale;
+  } else {
+    title.textContent = 'افزودن محصول جدید';
+    document.querySelector('#product-admin-modal form').reset();
+    document.getElementById('form-product-id').value = '';
+  }
+
+  // Remove hidden state
+  modal.classList.remove('hidden');
+
+  // Activate modal CSS animation
+  modal.classList.add('active');
+}
+
+function closeProductModal() {
+  const modal = document.getElementById('product-admin-modal');
+
+  if (!modal) return;
+
+  modal.classList.remove('active');
+
+  // Wait for CSS transition before hiding
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300);
+}
 
     function editProduct(id) {
       const product = adminProducts.find(p => p.id === id);
